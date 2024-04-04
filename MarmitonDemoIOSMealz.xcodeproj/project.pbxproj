@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,16 @@
 		26DC5AED2BBEC0BF000E9510 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DC5AEB2BBEC0BF000E9510 /* Main.storyboard */; };
 		26DC5AEF2BBEC0BF000E9510 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26DC5AEE2BBEC0BF000E9510 /* Assets.xcassets */; };
 		26DC5AF22BBEC0BF000E9510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DC5AF02BBEC0BF000E9510 /* LaunchScreen.storyboard */; };
+		26DC5AFA2BBEC0D4000E9510 /* MealzViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5AF92BBEC0D4000E9510 /* MealzViewConfig.swift */; };
+		26DC5AFF2BBEC0DA000E9510 /* FavoritesFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5AFC2BBEC0DA000E9510 /* FavoritesFeatureViewController.swift */; };
+		26DC5B002BBEC0DA000E9510 /* CatalogFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5AFD2BBEC0DA000E9510 /* CatalogFeatureViewController.swift */; };
+		26DC5B012BBEC0DA000E9510 /* MyMealsFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5AFE2BBEC0DA000E9510 /* MyMealsFeatureViewController.swift */; };
+		26DC5B092BBEC0DE000E9510 /* DemoBasketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B032BBEC0DE000E9510 /* DemoBasketService.swift */; };
+		26DC5B0A2BBEC0DE000E9510 /* PretendBasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B052BBEC0DE000E9510 /* PretendBasketViewController.swift */; };
+		26DC5B0B2BBEC0DE000E9510 /* PretendProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B062BBEC0DE000E9510 /* PretendProduct.swift */; };
+		26DC5B0C2BBEC0DE000E9510 /* PretendBasket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B072BBEC0DE000E9510 /* PretendBasket.swift */; };
+		26DC5B0D2BBEC0DE000E9510 /* MealzManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B082BBEC0DE000E9510 /* MealzManager.swift */; };
+		26DC5B102BBEC106000E9510 /* MarmitonUIMealzIOS in Frameworks */ = {isa = PBXBuildFile; productRef = 26DC5B0F2BBEC106000E9510 /* MarmitonUIMealzIOS */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +34,15 @@
 		26DC5AEE2BBEC0BF000E9510 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26DC5AF12BBEC0BF000E9510 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26DC5AF32BBEC0BF000E9510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26DC5AF92BBEC0D4000E9510 /* MealzViewConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealzViewConfig.swift; sourceTree = "<group>"; };
+		26DC5AFC2BBEC0DA000E9510 /* FavoritesFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesFeatureViewController.swift; sourceTree = "<group>"; };
+		26DC5AFD2BBEC0DA000E9510 /* CatalogFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogFeatureViewController.swift; sourceTree = "<group>"; };
+		26DC5AFE2BBEC0DA000E9510 /* MyMealsFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMealsFeatureViewController.swift; sourceTree = "<group>"; };
+		26DC5B032BBEC0DE000E9510 /* DemoBasketService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoBasketService.swift; sourceTree = "<group>"; };
+		26DC5B052BBEC0DE000E9510 /* PretendBasketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PretendBasketViewController.swift; sourceTree = "<group>"; };
+		26DC5B062BBEC0DE000E9510 /* PretendProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PretendProduct.swift; sourceTree = "<group>"; };
+		26DC5B072BBEC0DE000E9510 /* PretendBasket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PretendBasket.swift; sourceTree = "<group>"; };
+		26DC5B082BBEC0DE000E9510 /* MealzManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealzManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26DC5B102BBEC106000E9510 /* MarmitonUIMealzIOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +76,9 @@
 		26DC5AE42BBEC0BF000E9510 /* MarmitonDemoIOSMealz */ = {
 			isa = PBXGroup;
 			children = (
+				26DC5B022BBEC0DE000E9510 /* MealzInit */,
+				26DC5AFB2BBEC0DA000E9510 /* Features */,
+				26DC5AF92BBEC0D4000E9510 /* MealzViewConfig.swift */,
 				26DC5AE52BBEC0BF000E9510 /* AppDelegate.swift */,
 				26DC5AE72BBEC0BF000E9510 /* SceneDelegate.swift */,
 				26DC5AE92BBEC0BF000E9510 /* ViewController.swift */,
@@ -65,6 +88,36 @@
 				26DC5AF32BBEC0BF000E9510 /* Info.plist */,
 			);
 			path = MarmitonDemoIOSMealz;
+			sourceTree = "<group>";
+		};
+		26DC5AFB2BBEC0DA000E9510 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				26DC5AFC2BBEC0DA000E9510 /* FavoritesFeatureViewController.swift */,
+				26DC5AFD2BBEC0DA000E9510 /* CatalogFeatureViewController.swift */,
+				26DC5AFE2BBEC0DA000E9510 /* MyMealsFeatureViewController.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		26DC5B022BBEC0DE000E9510 /* MealzInit */ = {
+			isa = PBXGroup;
+			children = (
+				26DC5B032BBEC0DE000E9510 /* DemoBasketService.swift */,
+				26DC5B042BBEC0DE000E9510 /* PretendBasket */,
+				26DC5B082BBEC0DE000E9510 /* MealzManager.swift */,
+			);
+			path = MealzInit;
+			sourceTree = "<group>";
+		};
+		26DC5B042BBEC0DE000E9510 /* PretendBasket */ = {
+			isa = PBXGroup;
+			children = (
+				26DC5B052BBEC0DE000E9510 /* PretendBasketViewController.swift */,
+				26DC5B062BBEC0DE000E9510 /* PretendProduct.swift */,
+				26DC5B072BBEC0DE000E9510 /* PretendBasket.swift */,
+			);
+			path = PretendBasket;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +136,9 @@
 			dependencies = (
 			);
 			name = MarmitonDemoIOSMealz;
+			packageProductDependencies = (
+				26DC5B0F2BBEC106000E9510 /* MarmitonUIMealzIOS */,
+			);
 			productName = MarmitonDemoIOSMealz;
 			productReference = 26DC5AE22BBEC0BF000E9510 /* MarmitonDemoIOSMealz.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +167,9 @@
 				Base,
 			);
 			mainGroup = 26DC5AD92BBEC0BF000E9510;
+			packageReferences = (
+				26DC5B0E2BBEC106000E9510 /* XCLocalSwiftPackageReference "../MarmitonUIMealzIOS" */,
+			);
 			productRefGroup = 26DC5AE32BBEC0BF000E9510 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +197,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26DC5B012BBEC0DA000E9510 /* MyMealsFeatureViewController.swift in Sources */,
+				26DC5B0D2BBEC0DE000E9510 /* MealzManager.swift in Sources */,
 				26DC5AEA2BBEC0BF000E9510 /* ViewController.swift in Sources */,
+				26DC5B092BBEC0DE000E9510 /* DemoBasketService.swift in Sources */,
+				26DC5B0A2BBEC0DE000E9510 /* PretendBasketViewController.swift in Sources */,
+				26DC5B0C2BBEC0DE000E9510 /* PretendBasket.swift in Sources */,
+				26DC5B0B2BBEC0DE000E9510 /* PretendProduct.swift in Sources */,
+				26DC5B002BBEC0DA000E9510 /* CatalogFeatureViewController.swift in Sources */,
 				26DC5AE62BBEC0BF000E9510 /* AppDelegate.swift in Sources */,
+				26DC5AFA2BBEC0D4000E9510 /* MealzViewConfig.swift in Sources */,
 				26DC5AE82BBEC0BF000E9510 /* SceneDelegate.swift in Sources */,
+				26DC5AFF2BBEC0DA000E9510 /* FavoritesFeatureViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +431,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		26DC5B0E2BBEC106000E9510 /* XCLocalSwiftPackageReference "../MarmitonUIMealzIOS" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../MarmitonUIMealzIOS;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		26DC5B0F2BBEC106000E9510 /* MarmitonUIMealzIOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MarmitonUIMealzIOS;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 26DC5ADA2BBEC0BF000E9510 /* Project object */;
 }
