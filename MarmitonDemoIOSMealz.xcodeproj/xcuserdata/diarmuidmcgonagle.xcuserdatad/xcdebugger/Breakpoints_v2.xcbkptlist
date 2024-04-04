@@ -16,8 +16,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
             endingLineNumber = "34"
-            landmarkName = "init(recipeId:hideTitles:recipeDetailsConstructor:)"
-            landmarkType = "7">
+            landmarkName = "MealzRecipeDetailsFeatureUIKit"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -85,8 +85,27 @@ struct MealzViewConfig {
 //        recipeCard: TypeSafeMyMealRecipeCard(MarmitonMyMealRecipeCard())
     )
     
+    static let myMealsBaseView = BasePageViewParameters(
+        empty: TypeSafeEmpty(MarmitonMyMealsEmpty())
+    )
+    
     static let myMealsConfig = MyMealsFeatureConstructor(
+        baseViews: myMealsBaseView,
         myMealsViewOptions: myMealsView,
+//        catalogRecipesListGridConfig: myMealsGridConfig,
+        navigateToCatalog: showCatalog
+    )
+    
+    // ---------------------------------- MY BASKET ----------------------------------
+    
+    static let myBasketView = MyBasketViewOptions(
+        swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {}))
+    )
+    
+    static let myBasketConfig = MyBasketFeatureConstructor(
+        myBasketViewOptions: myBasketView,
+        myMealsViewOptions: myMealsView,
+        myMealsBaseViews: myMealsBaseView,
 //        catalogRecipesListGridConfig: myMealsGridConfig,
         navigateToCatalog: showCatalog
     )
