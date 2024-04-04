@@ -14,8 +14,6 @@
 		26DC5AEF2BBEC0BF000E9510 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26DC5AEE2BBEC0BF000E9510 /* Assets.xcassets */; };
 		26DC5AF22BBEC0BF000E9510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DC5AF02BBEC0BF000E9510 /* LaunchScreen.storyboard */; };
 		26DC5AFA2BBEC0D4000E9510 /* MealzViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5AF92BBEC0D4000E9510 /* MealzViewConfig.swift */; };
-		26DC5AFF2BBEC0DA000E9510 /* FavoritesFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5AFC2BBEC0DA000E9510 /* FavoritesFeatureViewController.swift */; };
-		26DC5B002BBEC0DA000E9510 /* CatalogFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5AFD2BBEC0DA000E9510 /* CatalogFeatureViewController.swift */; };
 		26DC5B012BBEC0DA000E9510 /* MyMealsFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5AFE2BBEC0DA000E9510 /* MyMealsFeatureViewController.swift */; };
 		26DC5B092BBEC0DE000E9510 /* DemoBasketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B032BBEC0DE000E9510 /* DemoBasketService.swift */; };
 		26DC5B0A2BBEC0DE000E9510 /* PretendBasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B052BBEC0DE000E9510 /* PretendBasketViewController.swift */; };
@@ -37,8 +35,6 @@
 		26DC5AF12BBEC0BF000E9510 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26DC5AF32BBEC0BF000E9510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26DC5AF92BBEC0D4000E9510 /* MealzViewConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealzViewConfig.swift; sourceTree = "<group>"; };
-		26DC5AFC2BBEC0DA000E9510 /* FavoritesFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesFeatureViewController.swift; sourceTree = "<group>"; };
-		26DC5AFD2BBEC0DA000E9510 /* CatalogFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogFeatureViewController.swift; sourceTree = "<group>"; };
 		26DC5AFE2BBEC0DA000E9510 /* MyMealsFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMealsFeatureViewController.swift; sourceTree = "<group>"; };
 		26DC5B032BBEC0DE000E9510 /* DemoBasketService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoBasketService.swift; sourceTree = "<group>"; };
 		26DC5B052BBEC0DE000E9510 /* PretendBasketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PretendBasketViewController.swift; sourceTree = "<group>"; };
@@ -98,8 +94,6 @@
 		26DC5AFB2BBEC0DA000E9510 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				26DC5AFC2BBEC0DA000E9510 /* FavoritesFeatureViewController.swift */,
-				26DC5AFD2BBEC0DA000E9510 /* CatalogFeatureViewController.swift */,
 				26DC5AFE2BBEC0DA000E9510 /* MyMealsFeatureViewController.swift */,
 				26DC5B112BBECAF2000E9510 /* StandaloneRecipeDetailsViewController.swift */,
 			);
@@ -211,11 +205,9 @@
 				26DC5B142BBED007000E9510 /* OpenRecipeDetailsButtonViewController.swift in Sources */,
 				26DC5B0C2BBEC0DE000E9510 /* PretendBasket.swift in Sources */,
 				26DC5B0B2BBEC0DE000E9510 /* PretendProduct.swift in Sources */,
-				26DC5B002BBEC0DA000E9510 /* CatalogFeatureViewController.swift in Sources */,
 				26DC5AE62BBEC0BF000E9510 /* AppDelegate.swift in Sources */,
 				26DC5AFA2BBEC0D4000E9510 /* MealzViewConfig.swift in Sources */,
 				26DC5AE82BBEC0BF000E9510 /* SceneDelegate.swift in Sources */,
-				26DC5AFF2BBEC0DA000E9510 /* FavoritesFeatureViewController.swift in Sources */,
 				26DC5B122BBECAF2000E9510 /* StandaloneRecipeDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
