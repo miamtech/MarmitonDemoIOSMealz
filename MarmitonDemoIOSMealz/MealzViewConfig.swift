@@ -11,6 +11,8 @@ import MealzUIModuleIOS
 import MealzIOSFramework
 import MealzNavModuleIOS
 
+let changeStore: () -> Void = {}
+
 struct MealzViewConfig {
     
     // ----------------------------- RECIPE DETAILS ------------------------------
@@ -20,7 +22,8 @@ struct MealzViewConfig {
     )
     static let recipeDetailsViews = RecipeDetailsViewOptions(
         header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView()),
-        selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView())
+        selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
+        numberOfIngredientsTitle: TypeSafeBaseTitle(MarmitonMyBasketTitle(changeStore: changeStore))
 //        steps: TypeSafeRecipeDetailsSteps(MarmitonRecipeDetailsStepsView()),
 //        footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView())
     )
@@ -81,7 +84,7 @@ struct MealzViewConfig {
     // ---------------------------------- MY MEALS ----------------------------------
     
     static let myMealsView = MyMealsViewOptions(
-//        title: TypeSafeBaseTitle(MarmitonMyMealsTitle()),
+        title: TypeSafeBaseTitle(EmptyTitleView())
 //        recipeCard: TypeSafeMyMealRecipeCard(MarmitonMyMealRecipeCard())
     )
     
@@ -99,6 +102,7 @@ struct MealzViewConfig {
     // ---------------------------------- MY BASKET ----------------------------------
     
     static let myBasketView = MyBasketViewOptions(
+        title: TypeSafeBaseTitle(MarmitonMyBasketTitle(changeStore: changeStore)),
         swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {}))
     )
     
