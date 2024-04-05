@@ -70,6 +70,6 @@ public class MealzManager: ObservableObject {
         // default is .errorsAndWarns
         LogHandler.companion.logLevel = .allLogs
         
-//        configDimensions()
+        configDimensions()
     }
 }
