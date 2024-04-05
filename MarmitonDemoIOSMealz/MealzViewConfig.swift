@@ -21,9 +21,9 @@ struct MealzViewConfig {
 //        loading: TypeSafeLoading(MarmitonLoadingView())
     )
     static let recipeDetailsViews = RecipeDetailsViewOptions(
-        header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView()),
-        selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
-        numberOfIngredientsTitle: TypeSafeBaseTitle(MarmitonMyBasketTitle(changeStore: changeStore))
+        header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView(changeStore: changeStore)),
+        selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView())
+//        numberOfIngredientsTitle: TypeSafeBaseTitle(EmptyTitleView())
 //        steps: TypeSafeRecipeDetailsSteps(MarmitonRecipeDetailsStepsView()),
 //        footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView())
     )
