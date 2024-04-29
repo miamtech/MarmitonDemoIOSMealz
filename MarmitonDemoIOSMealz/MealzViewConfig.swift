@@ -10,8 +10,20 @@ import MarmitonUIMealzIOS
 import MealzUIModuleIOS
 import MealzIOSFramework
 import MealzNavModuleIOS
+import mealzcore
+import UIKit
 
-let changeStore: () -> Void = {}
+let changeStore: () -> Void = {
+    let htmlFileURL =  Bundle(identifier: "MarmitonUIMealzIOS-MarmitonUIMealzIOS-resources")!.url(forResource: "index", withExtension: "html", subdirectory: "Ressources")!
+    
+    var mealsWebView =  MealzWebView(url:htmlFileURL) { value in
+        guard let posId = value as? String else { return }
+        Mealz.User.shared.setStoreId(storeId: posId)
+    }
+    
+    UIApplication.shared.keyWindow?.rootViewController?.present(mealsWebView, animated: true)
+    
+}
 
 struct MealzViewConfig {
     
