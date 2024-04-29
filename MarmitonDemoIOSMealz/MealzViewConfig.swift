@@ -95,7 +95,7 @@ struct MealzViewConfig {
     
     // ---------------------------------- MY MEALS ----------------------------------
     
-    static let myMealsView = MyMealsViewOptions(
+    static let myMealsView = NestedMyMealsViewOptions(
         title: TypeSafeBaseTitle(EmptyTitleView())
 //        recipeCard: TypeSafeMyMealRecipeCard(MarmitonMyMealRecipeCard())
     )
@@ -104,11 +104,10 @@ struct MealzViewConfig {
         empty: TypeSafeEmpty(MarmitonMyMealsEmpty())
     )
     
-    static let myMealsConfig = MyMealsFeatureConstructor(
-        baseViews: myMealsBaseView,
-        myMealsViewOptions: myMealsView,
-//        catalogRecipesListGridConfig: myMealsGridConfig,
-        navigateToCatalog: showCatalog
+    // -------------------------------- MY PRODUCTS ----------------------------------
+    
+    static let myProductsBaseView = BasePageViewParameters(
+        empty: TypeSafeEmpty(MarmitonMyMealsEmpty())
     )
     
     // ---------------------------------- MY BASKET ----------------------------------
@@ -120,8 +119,9 @@ struct MealzViewConfig {
     
     static let myBasketConfig = MyBasketFeatureConstructor(
         myBasketViewOptions: myBasketView,
-        myMealsViewOptions: myMealsView,
+        myMealsViewOptions: MyMealsViewOptions(nestedOptions: myMealsView),
         myMealsBaseViews: myMealsBaseView,
+        myProductsBaseViews: myProductsBaseView,
 //        catalogRecipesListGridConfig: myMealsGridConfig,
         navigateToCatalog: showCatalog
     )
