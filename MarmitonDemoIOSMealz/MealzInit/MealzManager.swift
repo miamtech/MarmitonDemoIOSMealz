@@ -65,6 +65,9 @@ public class MealzManager: ObservableObject {
         // show "Sponsored" tag on products that are sponsored
         Mealz.shared.environment.setAllowsSponsoredProducts(isAllowed: true)
         
+        // set the redirection when the user has not selected a store
+        Mealz.shared.user.setStoreLocatorRedirection { changeStore() }
+        
         // set how many logs you want:
         // .errorsAndWarns, .errorsOnly, .allLogs, or .noLogs
         // default is .errorsAndWarns
