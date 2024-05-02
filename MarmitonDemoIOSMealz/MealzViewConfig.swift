@@ -147,9 +147,7 @@ struct MealzViewConfig {
     
     static let myBasketView = MyBasketViewOptions(
         title: TypeSafeBaseTitle(MarmitonMyBasketTitle(changeStore: changeStore)),
-        swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {})),
-        footer: TypeSafeMyBasketFooter(MarmitonMyBasketFooter(onSubmitOrder: { url in           
-        }))
+        swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {}))
     )
     
     static let myBasketConfig = MyBasketFeatureConstructor(
