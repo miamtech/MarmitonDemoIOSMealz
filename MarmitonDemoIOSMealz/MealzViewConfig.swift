@@ -7,9 +7,9 @@
 
 import Foundation
 import MarmitonUIMealzIOS
-import MealzUIModuleIOS
-import MealzIOSFramework
-import MealzNavModuleIOS
+import MealzUIiOSSDK
+import MealziOSSDK
+import MealzNaviOSSDK
 import mealzcore
 import UIKit
 import WebKit

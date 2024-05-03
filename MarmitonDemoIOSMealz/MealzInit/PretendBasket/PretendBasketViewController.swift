@@ -7,15 +7,15 @@
 
 import UIKit
 import Combine
-import MealzIOSFramework
-import MealzUIModuleIOS
+import MealziOSSDK
+import MealzUIiOSSDK
 import SwiftUI
 
 class PretendBasketViewController: UIViewController, UITableViewDelegate,       UITableViewDataSource {
     
     private let tableView = UITableView()
     private var cancellables: Set<AnyCancellable> = []
-    
+
     deinit { cancellables.forEach { $0.cancel() } }
     
     override func viewDidLoad() {
@@ -66,20 +66,31 @@ class PretendBasketViewController: UIViewController, UITableViewDelegate,       
         let cell = tableView.dequeueReusableCell(withIdentifier: "pretendBasketCell", for: indexPath) as! PretendBasketTableViewCell
         cell.delegate = self
         
-        cell.textLabel?.text = PretendBasket.shared.items[indexPath.row].name + " " + String(PretendBasket.shared.items[indexPath.row].quantity)
-        let url = URL(string: PretendBasket.shared.items[indexPath.row].imageUrl ?? "")
-        cell.cellImageView.image = UIImage(named: "")
-        cell.productId = PretendBasket.shared.items[indexPath.row].id
+        let item = PretendBasket.shared.items[indexPath.row]
+        cell.textLabel?.text = item.name + " " + String(item.quantity)
+        cell.productId = item.id
         
-        DispatchQueue.global().async {
-            if let url = url {
-                if let data = try? Data(contentsOf: url) {
+        // Reset the image to a placeholder or empty image
+        cell.cellImageView.image = UIImage(named: "placeholder")  // Ensure you have a placeholder image in your assets
+        
+        // Use the URL to download the image, make sure the URL is correct
+        if let urlString = item.imageUrl, let url = URL(string: urlString) {
+            // Cancel any previous image loading tasks
+            cell.cancelImageLoading()  // You need to implement this method in your cell class
+            
+            // Download or retrieve the image from cache asynchronously
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
                     DispatchQueue.main.async {
-                        cell.cellImageView.image = UIImage(data: data)
+                        // Check if the cell is still displaying the same data
+                        if tableView.cellForRow(at: indexPath) == cell {
+                            cell.cellImageView.image = image
+                        }
                     }
                 }
             }
         }
+        
         return cell
     }
 }
@@ -89,6 +100,7 @@ extension PretendBasketViewController: PretendBasketCellDelegate {
 //        let detailsVC = RecipeDetailsViewController(recipeId)
 //        navigationController?.pushViewController(detailsVC, animated: true)
     }
+    
 }
 
 
@@ -96,6 +108,12 @@ class PretendBasketTableViewCell: UITableViewCell {
     
     var onTrashButtonTapped: (() -> Void)?
     weak var delegate: PretendBasketCellDelegate?
+    var imageLoadTask: URLSessionDataTask?
+        
+       public func cancelImageLoading() {
+            imageLoadTask?.cancel()
+        }
+    
     
     var productId: String? {
         didSet {
