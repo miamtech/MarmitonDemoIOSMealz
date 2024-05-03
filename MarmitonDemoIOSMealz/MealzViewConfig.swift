@@ -20,9 +20,20 @@ let changeStore: () -> Void = {
         guard let posId = value as? String else { return }
         Mealz.User.shared.setStoreId(storeId: posId)
     }
-    
-    UIApplication.shared.keyWindow?.rootViewController?.present(mealsWebView, animated: true)
-    
+    if let sceneDelegate = UIApplication.shared.connectedScenes
+        .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+       let keyWindow = sceneDelegate.windows.first(where: { $0.isKeyWindow }),
+       let rootViewController = keyWindow.rootViewController {
+        
+        // Find the topmost view controller which is not presenting another view controller
+        var topViewController = rootViewController
+        while let presentedViewController = topViewController.presentedViewController {
+            topViewController = presentedViewController
+        }
+        
+        // Present the new view controller from the topmost view controller
+        topViewController.present(mealsWebView, animated: true)
+    }
 }
 
 struct MealzViewConfig {
@@ -30,17 +41,17 @@ struct MealzViewConfig {
     // ----------------------------- RECIPE DETAILS ------------------------------
     
     static let recipeDetailsBaseViews = BasePageViewParameters(
-//        loading: TypeSafeLoading(MarmitonLoadingView())
+        //        loading: TypeSafeLoading(MarmitonLoadingView())
     )
     static let recipeDetailsViews = RecipeDetailsViewOptions(
         header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView(changeStore: changeStore)),
-        selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView())
-//        numberOfIngredientsTitle: TypeSafeBaseTitle(EmptyTitleView())
-//        steps: TypeSafeRecipeDetailsSteps(MarmitonRecipeDetailsStepsView()),
-//        footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView())
+        selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
+        //        numberOfIngredientsTitle: TypeSafeBaseTitle(EmptyTitleView())
+        //        steps: TypeSafeRecipeDetailsSteps(MarmitonRecipeDetailsStepsView()),
+        footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView())
     )
     static let recipeDetailsProductsViews = RecipeDetailsProductViewOptions(
-//        addedProduct: TypeSafeRecipeDetailsAddedProduct(MarmitonRecipeDetailsAddedProductView())
+        //        addedProduct: TypeSafeRecipeDetailsAddedProduct(MarmitonRecipeDetailsAddedProductView())
     )
     static let recipeDetailsConfig = RecipeDetailsFeatureConstructor(
         baseViews: recipeDetailsBaseViews,
@@ -51,18 +62,18 @@ struct MealzViewConfig {
     // -------------------------------- CATALOG ----------------------------------
     
     static let catalogView = CatalogViewOptions(
-//        catalogToolbar: TypeSafeCatalogToolbar(MarmitonCatalogToolbar()),
-//        resultsToolbar: TypeSafeCatalogToolbar(MarmitonCatalogResultsToolbar()),
-//        mealsInBasketButtonSuccess: TypeSafeMealsInBasketButtonSuccess(MarmitonMealsInBasketButtonSuccess())
+        //        catalogToolbar: TypeSafeCatalogToolbar(MarmitonCatalogToolbar()),
+        //        resultsToolbar: TypeSafeCatalogToolbar(MarmitonCatalogResultsToolbar()),
+        //        mealsInBasketButtonSuccess: TypeSafeMealsInBasketButtonSuccess(MarmitonMealsInBasketButtonSuccess())
     )
     
     static let catalogPackageView = CatalogPackageRowViewOptions(
-//        callToAction: TypeSafeCatalogPackageCTA(MarmitonCatalogPackageCTA()),
-//        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard(showYellowBanner: true))
+        //        callToAction: TypeSafeCatalogPackageCTA(MarmitonCatalogPackageCTA()),
+        //        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard(showYellowBanner: true))
     )
     
     static let recipesListView = CatalogRecipesListViewOptions(
-//        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard(showingOnCatalogResults: true))
+        //        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard(showingOnCatalogResults: true))
     )
     
     static let catalogViewGridConfig = CatalogRecipesListGridConfig(
@@ -74,9 +85,9 @@ struct MealzViewConfig {
         catalogViewOptions: catalogView,
         recipesListViewOptions: recipesListView,
         packageRowViewOptions: catalogPackageView,
-//        catalogSearchViewOptions: catalogSearchView,
+        //        catalogSearchViewOptions: catalogSearchView,
         catalogViewGridConfig: catalogViewGridConfig
-//        catalogResultsGridConfig: catalogResultsGridConfig
+        //        catalogResultsGridConfig: catalogResultsGridConfig
     )
     
     // -------------------------------- FAVORITES ----------------------------------
@@ -85,7 +96,7 @@ struct MealzViewConfig {
     static let showCatalog = {}
     
     static let favoritesView = FavoritesViewOptions(
-//        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard())
+        //        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard())
     )
     
     static let favoritesConfig = FavoritesFeatureConstructor(
@@ -97,7 +108,7 @@ struct MealzViewConfig {
     
     static let myMealsView = NestedMyMealsViewOptions(
         title: TypeSafeBaseTitle(EmptyTitleView())
-//        recipeCard: TypeSafeMyMealRecipeCard(MarmitonMyMealRecipeCard())
+        //        recipeCard: TypeSafeMyMealRecipeCard(MarmitonMyMealRecipeCard())
     )
     
     static let myMealsBaseView = BasePageViewParameters(
@@ -122,7 +133,7 @@ struct MealzViewConfig {
         myMealsViewOptions: MyMealsViewOptions(nestedOptions: myMealsView),
         myMealsBaseViews: myMealsBaseView,
         myProductsBaseViews: myProductsBaseView,
-//        catalogRecipesListGridConfig: myMealsGridConfig,
+        //        catalogRecipesListGridConfig: myMealsGridConfig,
         navigateToCatalog: showCatalog
     )
     
