@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import MealzNavModuleIOS
+import MealzNaviOSSDK
 
 class MyBasketFeatureViewController: UIViewController {
     

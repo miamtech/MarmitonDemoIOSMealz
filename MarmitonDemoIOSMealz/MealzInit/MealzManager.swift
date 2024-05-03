@@ -7,8 +7,8 @@
 
 import Foundation
 import mealzcore
-import MealzIOSFramework
-import MealzUIModuleIOS
+import MealziOSSDK
+import MealzUIiOSSDK
 import MarmitonUIMealzIOS
 
 public class MealzManager: ObservableObject {
@@ -16,18 +16,22 @@ public class MealzManager: ObservableObject {
     
     // need to be private
     private init() {
-        let supplierKeyUAT = "ewoJInN1cHBsaWVyX2lkIjogIjciLAoJInBsYXVzaWJsZV9kb21haW5lIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX29yaWdpbiI6ICJjb3Vyc2VzdSIsCgkib3JpZ2luIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX2Vudmlyb25tZW50IjogIlVBVCIKfQ"
-//        let supplierKey = "ewoJInN1cHBsaWVyX2lkIjogIjciLAoJInBsYXVzaWJsZV9kb21haW5lIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX29yaWdpbiI6ICJjb3Vyc2VzdSIsCgkib3JpZ2luIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX2Vudmlyb25tZW50IjogIlBST0QiCn0="
+//        let supplierKeyUAT = "ewoJInN1cHBsaWVyX2lkIjogIjciLAoJInBsYXVzaWJsZV9kb21haW5lIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX29yaWdpbiI6ICJjb3Vyc2VzdSIsCgkib3JpZ2luIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX2Vudmlyb25tZW50IjogIlVBVCIKfQ"
+        let supplierKey = "ewogICAgICAgICJwcm92aWRlcl9pZCI6ICJtYXJtaXRvbiIKCSJwbGF1c2libGVfZG9tYWluZSI6ICJtaWFtLm1hcm1pdG9uLmFwcCIsCgkibWlhbV9vcmlnaW4iOiAibWFybWl0b24iLAoJIm9yaWdpbiI6ICJtaWFtLm1hcm1pdG9uLmFwcCIsCgkibWlhbV9lbnZpcm9ubWVudCI6ICJVQVQiCn0="
         
         I18nResolver.shared.registerAppBundle(bundle: MarmitonUIMealzIOS.bundle)
         
         let demoBasketService = DemoBasketService(initialBasketList: PretendBasket.shared.items)
         
-        Mealz.shared.Core(init: { coreBuilder in
+        Mealz.shared.Core(
+            init: { coreBuilder in
             // set supplier key
             coreBuilder.sdkRequirement(init: { requirementBuilder in
-                requirementBuilder.key = supplierKeyUAT
+                requirementBuilder.key = supplierKey
             })
+                coreBuilder.option(init: { config in
+                    config.isAnonymousModeEnabled = true
+                })
             // set listeners & notifiers
             coreBuilder.subscriptions(init:  { subscriptionBuilder in
                 subscriptionBuilder.basket(init: { basketSubscriptionBuilder in
@@ -39,7 +43,7 @@ public class MealzManager: ObservableObject {
             })
         })
         // set store
-        Mealz.shared.user.setStoreId(storeId: "25910")
+        Mealz.shared.user.setStoreWithMealzId(storeId: "25910")
         // set userID
         Mealz.shared.user.updateUserId(userId: "test_\(UUID())", authorization: Authorization.userId)
         // allow profiling -> can we use your personal data to provide custom recipes?

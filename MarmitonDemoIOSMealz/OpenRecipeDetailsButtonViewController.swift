@@ -61,7 +61,7 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
       changeUserToggle.isOn = true
       
       // Add target to handle value change
-      changeUserToggle.addTarget(self, action: #selector(changeStoreChanged(_:)), for: .valueChanged)
+      changeUserToggle.addTarget(self, action: #selector(changeUserChanged(_:)), for: .valueChanged)
       
       /* ----------------------------- PRICE OF RECIPE -----------------------------------------------*/
       // Configure the button
@@ -135,7 +135,7 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
       // launch store locator
       // else
       // launch Recipe Details
-      let recipeDetails = StandaloneRecipeDetailsViewController(recipeId: "15218")
+      let recipeDetails = StandaloneRecipeDetailsViewController(recipeId: "14472")
       if let nav = self.navigationController {
          nav.present(recipeDetails, animated: true)
       }
@@ -161,13 +161,15 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
    
    @objc func changeStoreChanged(_ sender: UISwitch) {
       if sender.isOn {
-         Mealz.shared.user.setStoreId(storeId: "25910")
-      } else { Mealz.shared.user.setStoreId(storeId: "") }
+         Mealz.shared.user.setStoreWithMealzId(storeId: "25910")
+      } else { Mealz.shared.user.setStoreWithMealzId(storeId: "") }
    }
    
    @objc func changeUserChanged(_ sender: UISwitch) {
       if sender.isOn {
          Mealz.shared.user.updateUserId(userId: "test_\(UUID())", authorization: Authorization.userId)
-      } else { Mealz.shared.user.updateUserId(userId: nil, authorization: Authorization.userId) }
+      } else {
+         Mealz.shared.user.updateUserId(userId: nil, authorization: Authorization.userId)
+      }
    }
 }
