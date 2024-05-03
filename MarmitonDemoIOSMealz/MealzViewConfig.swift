@@ -20,7 +20,7 @@ let changeStore: () -> Void = {
     
     var mealsWebView =  MealzWebView(url:htmlFileURL) { value in
         guard let posId = value as? String else { return }
-        Mealz.User.shared.setStoreId(storeId: posId)
+        Mealz.User.shared.setStoreWithMealzId(storeId: posId)
     }
     if let sceneDelegate = UIApplication.shared.connectedScenes
         .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
