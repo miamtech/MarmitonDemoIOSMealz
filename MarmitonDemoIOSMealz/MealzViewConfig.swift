@@ -20,7 +20,7 @@ let changeStore: () -> Void = {
     
     var mealsWebView =  MealzWebView(url:htmlFileURL) { value in
         guard let posId = value as? String else { return }
-        Mealz.User.shared.setStoreId(storeId: posId)
+        Mealz.User.shared.setStorePosId(storeId: posId)
     }
     
     UIApplication.shared.keyWindow?.rootViewController?.present(mealsWebView, animated: true)
