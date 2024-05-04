@@ -135,7 +135,7 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
       // launch store locator
       // else
       // launch Recipe Details
-      let recipeDetails = StandaloneRecipeDetailsViewController(recipeId: "14472")
+      let recipeDetails = StandaloneRecipeDetailsViewController(recipeId: "22509")
       if let nav = self.navigationController {
          nav.present(recipeDetails, animated: true)
       }
@@ -145,7 +145,7 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
       if priceOfRecipe == nil {
          Task {
             do {
-               let price = try await Mealz.shared.recipe.getPriceOrRedirect(recipeId: "14472", numberOfGuest: 4).await()
+               let price = try await Mealz.shared.recipe.getPriceOrRedirect(recipeId: "22509", numberOfGuest: 4).await()
                self.priceOfRecipe = String(price as? Double ?? 0)
                DispatchQueue.main.async { [weak self] in
                   self?.priceOfRecipeButton.setTitle(self?.priceOfRecipe ?? "Get Price", for: .normal)
@@ -161,7 +161,7 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
    
    @objc func changeStoreChanged(_ sender: UISwitch) {
       if sender.isOn {
-         Mealz.shared.user.setStoreWithMealzId(storeId: "25910")
+         Mealz.shared.user.setStoreWithMealzId(storeId: "345616")
       } else { Mealz.shared.user.setStoreWithMealzId(storeId: "") }
    }
    

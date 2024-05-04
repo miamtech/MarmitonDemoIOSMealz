@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,13 +19,14 @@
 		26DC5B0B2BBEC0DE000E9510 /* PretendProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B062BBEC0DE000E9510 /* PretendProduct.swift */; };
 		26DC5B0C2BBEC0DE000E9510 /* PretendBasket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B072BBEC0DE000E9510 /* PretendBasket.swift */; };
 		26DC5B0D2BBEC0DE000E9510 /* MealzManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B082BBEC0DE000E9510 /* MealzManager.swift */; };
-		26DC5B102BBEC106000E9510 /* MarmitonUIMealzIOS in Frameworks */ = {isa = PBXBuildFile; productRef = 26DC5B0F2BBEC106000E9510 /* MarmitonUIMealzIOS */; };
 		26DC5B122BBECAF2000E9510 /* StandaloneRecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B112BBECAF2000E9510 /* StandaloneRecipeDetailsViewController.swift */; };
 		26DC5B142BBED007000E9510 /* OpenRecipeDetailsButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B132BBED007000E9510 /* OpenRecipeDetailsButtonViewController.swift */; };
 		26DC5B182BBEF138000E9510 /* MyBasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B172BBEF138000E9510 /* MyBasketViewController.swift */; };
+		7BCB43B184CCAE019F9AE38E /* Pods_MarmitonDemoIOSMealz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54C01C02886E535B40F39EB /* Pods_MarmitonDemoIOSMealz.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A7CE7ED9DA90FEE72ED7C44 /* Pods-MarmitonDemoIOSMealz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarmitonDemoIOSMealz.debug.xcconfig"; path = "Target Support Files/Pods-MarmitonDemoIOSMealz/Pods-MarmitonDemoIOSMealz.debug.xcconfig"; sourceTree = "<group>"; };
 		26DC5AE22BBEC0BF000E9510 /* MarmitonDemoIOSMealz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarmitonDemoIOSMealz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DC5AE52BBEC0BF000E9510 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26DC5AE72BBEC0BF000E9510 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +44,8 @@
 		26DC5B112BBECAF2000E9510 /* StandaloneRecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneRecipeDetailsViewController.swift; sourceTree = "<group>"; };
 		26DC5B132BBED007000E9510 /* OpenRecipeDetailsButtonViewController.swift */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.swift; path = OpenRecipeDetailsButtonViewController.swift; sourceTree = "<group>"; };
 		26DC5B172BBEF138000E9510 /* MyBasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBasketViewController.swift; sourceTree = "<group>"; };
+		A54C01C02886E535B40F39EB /* Pods_MarmitonDemoIOSMealz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarmitonDemoIOSMealz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F846682E8099324A10F018F1 /* Pods-MarmitonDemoIOSMealz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarmitonDemoIOSMealz.release.xcconfig"; path = "Target Support Files/Pods-MarmitonDemoIOSMealz/Pods-MarmitonDemoIOSMealz.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,18 +53,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26DC5B102BBEC106000E9510 /* MarmitonUIMealzIOS in Frameworks */,
+				7BCB43B184CCAE019F9AE38E /* Pods_MarmitonDemoIOSMealz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10EAC7ADC28BFE090251B6CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1A7CE7ED9DA90FEE72ED7C44 /* Pods-MarmitonDemoIOSMealz.debug.xcconfig */,
+				F846682E8099324A10F018F1 /* Pods-MarmitonDemoIOSMealz.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		26DC5AD92BBEC0BF000E9510 = {
 			isa = PBXGroup;
 			children = (
 				26DC5AE42BBEC0BF000E9510 /* MarmitonDemoIOSMealz */,
 				26DC5AE32BBEC0BF000E9510 /* Products */,
+				10EAC7ADC28BFE090251B6CE /* Pods */,
+				CB94474AA5C1F9AE58E37A0C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +134,14 @@
 			path = PretendBasket;
 			sourceTree = "<group>";
 		};
+		CB94474AA5C1F9AE58E37A0C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A54C01C02886E535B40F39EB /* Pods_MarmitonDemoIOSMealz.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,18 +149,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26DC5AF62BBEC0BF000E9510 /* Build configuration list for PBXNativeTarget "MarmitonDemoIOSMealz" */;
 			buildPhases = (
+				5483780FAA13B1B2194E342F /* [CP] Check Pods Manifest.lock */,
 				26DC5ADE2BBEC0BF000E9510 /* Sources */,
 				26DC5ADF2BBEC0BF000E9510 /* Frameworks */,
 				26DC5AE02BBEC0BF000E9510 /* Resources */,
+				9D3F0AB21CD2CFA827C46F2F /* [CP] Embed Pods Frameworks */,
+				B446797AF58DF4F2643E4218 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = MarmitonDemoIOSMealz;
-			packageProductDependencies = (
-				26DC5B0F2BBEC106000E9510 /* MarmitonUIMealzIOS */,
-			);
 			productName = MarmitonDemoIOSMealz;
 			productReference = 26DC5AE22BBEC0BF000E9510 /* MarmitonDemoIOSMealz.app */;
 			productType = "com.apple.product-type.application";
@@ -167,9 +189,6 @@
 				Base,
 			);
 			mainGroup = 26DC5AD92BBEC0BF000E9510;
-			packageReferences = (
-				26DC5B0E2BBEC106000E9510 /* XCLocalSwiftPackageReference "../MarmitonUIMealzIOS" */,
-			);
 			productRefGroup = 26DC5AE32BBEC0BF000E9510 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -191,6 +210,65 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5483780FAA13B1B2194E342F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MarmitonDemoIOSMealz-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D3F0AB21CD2CFA827C46F2F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MarmitonDemoIOSMealz/Pods-MarmitonDemoIOSMealz-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MarmitonDemoIOSMealz/Pods-MarmitonDemoIOSMealz-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MarmitonDemoIOSMealz/Pods-MarmitonDemoIOSMealz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B446797AF58DF4F2643E4218 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MarmitonDemoIOSMealz/Pods-MarmitonDemoIOSMealz-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MarmitonDemoIOSMealz/Pods-MarmitonDemoIOSMealz-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MarmitonDemoIOSMealz/Pods-MarmitonDemoIOSMealz-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		26DC5ADE2BBEC0BF000E9510 /* Sources */ = {
@@ -355,12 +433,14 @@
 		};
 		26DC5AF72BBEC0BF000E9510 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A7CE7ED9DA90FEE72ED7C44 /* Pods-MarmitonDemoIOSMealz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VLHN7Y8965;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MarmitonDemoIOSMealz/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -384,12 +464,14 @@
 		};
 		26DC5AF82BBEC0BF000E9510 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F846682E8099324A10F018F1 /* Pods-MarmitonDemoIOSMealz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VLHN7Y8965;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MarmitonDemoIOSMealz/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -433,20 +515,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCLocalSwiftPackageReference section */
-		26DC5B0E2BBEC106000E9510 /* XCLocalSwiftPackageReference "../MarmitonUIMealzIOS" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../MarmitonUIMealzIOS;
-		};
-/* End XCLocalSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		26DC5B0F2BBEC106000E9510 /* MarmitonUIMealzIOS */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MarmitonUIMealzIOS;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 26DC5ADA2BBEC0BF000E9510 /* Project object */;
 }

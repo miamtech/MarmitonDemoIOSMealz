@@ -43,7 +43,7 @@ public class MealzManager: ObservableObject {
             })
         })
         // set store
-        Mealz.shared.user.setStoreWithMealzId(storeId: "25910")
+        Mealz.shared.user.setStoreWithMealzId(storeId: "345616")
         // set userID
         Mealz.shared.user.updateUserId(userId: "test_\(UUID())", authorization: Authorization.userId)
         // allow profiling -> can we use your personal data to provide custom recipes?

@@ -16,25 +16,31 @@ import WebKit
 
 
 let changeStore: () -> Void = {
-    let htmlFileURL =  Bundle(identifier: "MarmitonUIMealzIOS-MarmitonUIMealzIOS-resources")!.url(forResource: "index", withExtension: "html", subdirectory: "Ressources")!
-    
-    var mealsWebView =  MealzWebView(url:htmlFileURL) { value in
-        guard let posId = value as? String else { return }
-        Mealz.User.shared.setStoreWithMealzId(storeId: posId)
-    }
-    if let sceneDelegate = UIApplication.shared.connectedScenes
-        .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
-       let keyWindow = sceneDelegate.windows.first(where: { $0.isKeyWindow }),
-       let rootViewController = keyWindow.rootViewController {
-        
-        // Find the topmost view controller which is not presenting another view controller
-        var topViewController = rootViewController
-        while let presentedViewController = topViewController.presentedViewController {
-            topViewController = presentedViewController
+    #if COCOAPODS
+    let frameworkBundle = Bundle(for: MealzWebView.self)
+    let htmlFileURL = frameworkBundle.url(forResource: "index", withExtension: "html")
+    #else
+    let htmlFileURL =  Bundle(identifier: "MarmitonUIMealzIOS-MarmitonUIMealzIOS-resources").url(forResource: "index", withExtension: "html", subdirectory: "Ressources")
+    #endif
+    if let htmlFileURL {
+        var mealsWebView =  MealzWebView(url:htmlFileURL) { value in
+            guard let posId = value as? String else { return }
+            Mealz.User.shared.setStoreWithMealzId(storeId: posId)
         }
-        
-        // Present the new view controller from the topmost view controller
-        topViewController.present(mealsWebView, animated: true)
+        if let sceneDelegate = UIApplication.shared.connectedScenes
+            .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+           let keyWindow = sceneDelegate.windows.first(where: { $0.isKeyWindow }),
+           let rootViewController = keyWindow.rootViewController {
+            
+            // Find the topmost view controller which is not presenting another view controller
+            var topViewController = rootViewController
+            while let presentedViewController = topViewController.presentedViewController {
+                topViewController = presentedViewController
+            }
+            
+            // Present the new view controller from the topmost view controller
+            topViewController.present(mealsWebView, animated: true)
+        }
     }
 }
 
