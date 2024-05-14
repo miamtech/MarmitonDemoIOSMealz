@@ -18,7 +18,7 @@ import WebKit
 let changeStore: () -> Void = {
     let htmlFileURL =  Bundle(identifier: "MarmitonUIMealzIOS-MarmitonUIMealzIOS-resources")!.url(forResource: "index", withExtension: "html", subdirectory: "Ressources")!
     
-    var mealsWebView =  MealzWebView(url:htmlFileURL) { value in
+    var mealsWebView =  MealzStoreLocatorWebView(url:htmlFileURL) { value in
         guard let posId = value as? String else { return }
         Mealz.User.shared.setStoreWithMealzId(storeId: posId)
     }
