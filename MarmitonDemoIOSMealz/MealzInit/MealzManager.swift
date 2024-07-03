@@ -21,7 +21,6 @@ public class MealzManager: ObservableObject {
         
         I18nResolver.shared.registerAppBundle(bundle: MarmitonUIMealzIOS.bundle)
         
-        let demoBasketService = DemoBasketService(initialBasketList: PretendBasket.shared.items)
         
         Mealz.shared.Core(
             init: { coreBuilder in
@@ -32,20 +31,15 @@ public class MealzManager: ObservableObject {
                 coreBuilder.option(init: { config in
                     config.isAnonymousModeEnabled = true
                 })
-            // set listeners & notifiers
-            coreBuilder.subscriptions(init:  { subscriptionBuilder in
-                subscriptionBuilder.basket(init: { basketSubscriptionBuilder in
-                    // subscribe
-                    basketSubscriptionBuilder.subscribe(subscriber: demoBasketService)
-                    // push updates
-                    basketSubscriptionBuilder.register(publisher: demoBasketService)
-                })
-            })
         })
-        // set store
-        Mealz.shared.user.setStoreWithMealzId(storeId: "25910")
-        // set userID
-        Mealz.shared.user.updateUserId(userId: "test_\(UUID())", authorization: Authorization.userId)
+        
+        let defaults = UserDefaults.standard
+        if let domain = Bundle.main.bundleIdentifier {
+            defaults.removePersistentDomain(forName: domain)
+            defaults.synchronize()
+            print("All UserDefaults data cleared.")
+        }
+        
         // allow profiling -> can we use your personal data to provide custom recipes?
         Mealz.shared.user.setProfilingAllowance(allowance: true)
         // allow users to heart recipes
