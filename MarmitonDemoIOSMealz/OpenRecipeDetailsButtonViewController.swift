@@ -115,17 +115,22 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
    }
    
    @objc func launchRecipeDetails1() {
-      let recipeDetails = StandaloneRecipeDetailsViewController(recipeId: "22509")
+      let recipeDetails = StandaloneRecipeDetailsViewController(recipeId: "22509", openMyBasket: changeTabToMyBasket)
       if let nav = self.navigationController {
          nav.present(recipeDetails, animated: true)
       }
    }
    
    @objc func launchRecipeDetails2() {
-      let recipeDetails = StandaloneRecipeDetailsViewController(recipeId: "14472")
+      let recipeDetails = StandaloneRecipeDetailsViewController(recipeId: "14472", openMyBasket: changeTabToMyBasket)
       if let nav = self.navigationController {
          nav.present(recipeDetails, animated: true)
       }
+   }
+   
+   func changeTabToMyBasket() {
+      self.tabBarController?.selectedIndex = 1
+      print("code ran")
    }
    
    @objc func getPriceOrRedirect1() {

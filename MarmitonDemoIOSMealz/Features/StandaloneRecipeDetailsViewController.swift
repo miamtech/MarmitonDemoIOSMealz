@@ -10,9 +10,11 @@ import MealzNaviOSSDK
 
 class StandaloneRecipeDetailsViewController: UIViewController {
     let recipeId: String
+    let openMyBasket: () -> Void
     
-    init(recipeId: String) {
+    init(recipeId: String, openMyBasket: @escaping () -> Void) {
         self.recipeId = recipeId
+        self.openMyBasket = openMyBasket
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,7 +25,9 @@ class StandaloneRecipeDetailsViewController: UIViewController {
         
         let recipesDetailsFeature = MealzRecipeDetailsFeatureUIKit(
             recipeId: recipeId,
-            recipeDetailsConstructor: MealzViewConfig.recipeDetailsConfig
+            recipeDetailsConstructor: MealzViewConfig.recipeDetailsConfig({
+                self.openMyBasket()
+            })
         )
         
         // Add the custom navigation controller as a child view controller
