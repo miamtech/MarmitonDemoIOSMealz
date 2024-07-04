@@ -32,13 +32,6 @@ public class MealzManager: ObservableObject {
                 })
         })
         
-        let defaults = UserDefaults.standard
-        if let domain = Bundle.main.bundleIdentifier {
-            defaults.removePersistentDomain(forName: domain)
-            defaults.synchronize()
-            print("All UserDefaults data cleared.")
-        }
-        
         // allow profiling -> can we use your personal data to provide custom recipes?
         Mealz.shared.user.setProfilingAllowance(allowance: true)
         // allow users to heart recipes
