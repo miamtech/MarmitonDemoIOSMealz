@@ -16,17 +16,16 @@ public class MealzManager: ObservableObject {
     
     // need to be private
     private init() {
-//        let supplierKeyUAT = "ewoJInN1cHBsaWVyX2lkIjogIjciLAoJInBsYXVzaWJsZV9kb21haW5lIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX29yaWdpbiI6ICJjb3Vyc2VzdSIsCgkib3JpZ2luIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX2Vudmlyb25tZW50IjogIlVBVCIKfQ"
-        let supplierKey = "ewogICAgICAgICJwcm92aWRlcl9pZCI6ICJtYXJtaXRvbiIKCSJwbGF1c2libGVfZG9tYWluZSI6ICJtaWFtLm1hcm1pdG9uLmFwcCIsCgkibWlhbV9vcmlnaW4iOiAibWFybWl0b24iLAoJIm9yaWdpbiI6ICJtaWFtLm1hcm1pdG9uLmFwcCIsCgkibWlhbV9lbnZpcm9ubWVudCI6ICJVQVQiCn0="
+        let supplierKeyUAT = "ewogICAgICAgICJwcm92aWRlcl9pZCI6ICJtYXJtaXRvbiIKCSJwbGF1c2libGVfZG9tYWluZSI6ICJtaWFtLnRlc3QiLAoJIm1pYW1fb3JpZ2luIjogIm1hcm1pdG9uIiwKCSJvcmlnaW4iOiAibWlhbS5tYXJtaXRvbi5hcHAiLAoJIm1pYW1fZW52aXJvbm1lbnQiOiAiVUFUIgp9"
+//        let supplierKey = "ewogICAgICAgICJwcm92aWRlcl9pZCI6ICJtYXJtaXRvbiIKCSJwbGF1c2libGVfZG9tYWluZSI6ICJtaWFtLm1hcm1pdG9uLmFwcCIsCgkibWlhbV9vcmlnaW4iOiAibWFybWl0b24iLAoJIm9yaWdpbiI6ICJtaWFtLm1hcm1pdG9uLmFwcCIsCgkibWlhbV9lbnZpcm9ubWVudCI6ICJQUk9EIgp9"
         
-        I18nResolver.shared.registerAppBundle(bundle: MarmitonUIMealzIOS.bundle)
-        
+        I18nResolver.shared.registerAppBundle(bundle: MarmitonUIMealzIOSBundle.bundle)
         
         Mealz.shared.Core(
             init: { coreBuilder in
             // set supplier key
             coreBuilder.sdkRequirement(init: { requirementBuilder in
-                requirementBuilder.key = supplierKey
+                requirementBuilder.key = supplierKeyUAT
             })
                 coreBuilder.option(init: { config in
                     config.isAnonymousModeEnabled = true

@@ -14,7 +14,7 @@ class MyBasketFeatureViewController: UIViewController {
         super.viewDidLoad()
         
         let myBasketFeature = MealzMyBasketFeatureUIKit(
-            recipeDetailsConstructor: MealzViewConfig.recipeDetailsConfig,
+            recipeDetailsConstructor: MealzViewConfig.recipeDetailsConfig({}),
             myBasketContructor: MealzViewConfig.myBasketConfig
         )
         
@@ -28,6 +28,6 @@ class MyBasketFeatureViewController: UIViewController {
 
 // i only use above because i want to use Storyboard
 //let myBasketFeature = MealzMyBasketFeatureUIKit(
-//    recipeDetailsConstructor: MealzViewConfig.recipeDetailsConfig,
+//    recipeDetailsConstructor: MealzViewConfig.recipeDetailsConfig({}),
 //    myBasketContructor: MealzViewConfig.myBasketConfig
 //)

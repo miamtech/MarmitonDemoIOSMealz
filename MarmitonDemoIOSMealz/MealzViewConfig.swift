@@ -64,21 +64,38 @@ enum MealzViewConfig {
     static let recipeDetailsBaseViews = BasePageViewParameters(
         //        loading: TypeSafeLoading(MarmitonLoadingView())
     )
-    static let recipeDetailsViews = RecipeDetailsViewOptions(
-        header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView(changeStore: changeStore)),
-        selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
-        //        numberOfIngredientsTitle: TypeSafeBaseTitle(EmptyTitleView())
-        //        steps: TypeSafeRecipeDetailsSteps(MarmitonRecipeDetailsStepsView()),
-        footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView())
-    )
+    static let recipeDetailsViews = { (openMyBasket: @escaping () -> Void) -> RecipeDetailsViewOptions in
+        return RecipeDetailsViewOptions(
+            header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView(changeStore: changeStore)),
+            selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
+            //        numberOfIngredientsTitle: TypeSafeBaseTitle(EmptyTitleView())
+            //        steps: TypeSafeRecipeDetailsSteps(MarmitonRecipeDetailsStepsView()),
+            footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView(openMyBasket: openMyBasket)),
+            ingredientsAtHome: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()), 
+            unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView())
+        )
+    }
     static let recipeDetailsProductsViews = RecipeDetailsProductViewOptions(
-        //        addedProduct: TypeSafeRecipeDetailsAddedProduct(MarmitonRecipeDetailsAddedProductView())
+        ignoredProduct: TypeSafeRecipeDetailsIgnoredProduct(MarmitonRecipeDetailsIgnoredProductView()),
+        addedProduct: TypeSafeRecipeDetailsAddedProduct(MarmitonRecipeDetailsAddedProductView())
     )
-    static let recipeDetailsConfig = RecipeDetailsFeatureConstructor(
-        baseViews: recipeDetailsBaseViews,
-        recipeDetailsViewOptions: recipeDetailsViews,
-        recipeDetailsProductViewOptions: recipeDetailsProductsViews
+    
+    static let itemSelectorView = ItemSelectorViewOptions(
+        searchBar: TypeSafeSearch(MarmitonGeneralSearch()), 
+        noResults: TypeSafeItemSelectorNoResults(MarmitonItemSelectorNoResultsView())
     )
+    
+    static let recipeDetailsConfig = { (openMyBasket: @escaping () -> Void) -> RecipeDetailsFeatureConstructor in
+        return RecipeDetailsFeatureConstructor(
+            baseViews: recipeDetailsBaseViews,
+            recipeDetailsViewOptions: recipeDetailsViews(openMyBasket),
+            recipeDetailsProductViewOptions: recipeDetailsProductsViews,
+            itemSelectorViewOptions: itemSelectorView
+        )
+    }
+    
+    
+    
     
     // -------------------------------- CATALOG ----------------------------------
     
