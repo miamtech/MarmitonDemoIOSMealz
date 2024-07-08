@@ -7,26 +7,25 @@
 
 import Foundation
 import MarmitonUIMealzIOS
-import MealzUIiOSSDK
+import mealzcore
 import MealziOSSDK
 import MealzNaviOSSDK
-import mealzcore
+import MealzUIiOSSDK
 import UIKit
 import WebKit
 
-
 let changeStore: () -> Void = {
-    let htmlFileURL =  MarmitonUIMealzIOS.bundle.url(forResource: "index", withExtension: "html", subdirectory: "Ressources")!
+    let htmlFileURL = MarmitonUIMealzIOS.bundle.url(forResource: "index", withExtension: "html", subdirectory: "Ressources")!
     
-    var mealsWebView =  MealzStoreLocatorWebView(url:htmlFileURL) { value in
+    var mealsWebView = MealzStoreLocatorWebView(url: htmlFileURL) { value in
         guard let posId = value as? String else { return }
         Mealz.User.shared.setStoreWithMealzId(storeId: posId)
     }
     if let sceneDelegate = UIApplication.shared.connectedScenes
         .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
-       let keyWindow = sceneDelegate.windows.first(where: { $0.isKeyWindow }),
-       let rootViewController = keyWindow.rootViewController {
-        
+        let keyWindow = sceneDelegate.windows.first(where: { $0.isKeyWindow }),
+        let rootViewController = keyWindow.rootViewController
+    {
         // Find the topmost view controller which is not presenting another view controller
         var topViewController = rootViewController
         while let presentedViewController = topViewController.presentedViewController {
@@ -38,29 +37,19 @@ let changeStore: () -> Void = {
     }
 }
 
-let showCheckout: (_ url:String?) -> Void = {url in 
-    guard let stringUrl = url , let url = URL(string:stringUrl) else { return }
-     let request = URLRequest(url: url)
+let showCheckout: (_ url: String?) -> Void = { urlString in
     
-    let config = WKWebViewConfiguration()
-    let webView = WKWebView(frame: .zero, configuration: config)
-    webView.load(request)
-    webView.translatesAutoresizingMaskIntoConstraints = false
+    guard let urlString = urlString else { return }
+    guard let url = URL(string: urlString) else { return }
     
-    let viewController = UIViewController()
-    viewController.view.addSubview(webView)
-    NSLayoutConstraint.activate([
-        webView.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor, constant: 0),
-        webView.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor, constant: 0),
-        webView.topAnchor.constraint(equalTo: viewController.view.topAnchor, constant: 0),
-        webView.bottomAnchor.constraint(equalTo: viewController.view.bottomAnchor, constant: 0),
-    ])
+    let viewController = TransferBasketFeature(transferBasketUrl: url, retailerName: "toto").toUIKit()
+    viewController.modalPresentationStyle = .overCurrentContext
     
     if let sceneDelegate = UIApplication.shared.connectedScenes
         .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
-       let keyWindow = sceneDelegate.windows.first(where: { $0.isKeyWindow }),
-       let rootViewController = keyWindow.rootViewController {
-
+        let keyWindow = sceneDelegate.windows.first(where: { $0.isKeyWindow }),
+        let rootViewController = keyWindow.rootViewController
+    {
         var topViewController = rootViewController
         while let presentedViewController = topViewController.presentedViewController {
             topViewController = presentedViewController
@@ -69,8 +58,7 @@ let showCheckout: (_ url:String?) -> Void = {url in
     }
 }
 
-struct MealzViewConfig {
-    
+enum MealzViewConfig {
     // ----------------------------- RECIPE DETAILS ------------------------------
     
     static let recipeDetailsBaseViews = BasePageViewParameters(
@@ -170,5 +158,4 @@ struct MealzViewConfig {
         navigateToCatalog: showCatalog,
         navigateToCheckout: showCheckout
     )
-    
 }
