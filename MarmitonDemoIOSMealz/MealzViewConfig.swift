@@ -71,7 +71,7 @@ enum MealzViewConfig {
             //        numberOfIngredientsTitle: TypeSafeBaseTitle(EmptyTitleView())
             //        steps: TypeSafeRecipeDetailsSteps(MarmitonRecipeDetailsStepsView()),
             footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView(openMyBasket: openMyBasket)),
-            ingredientsAtHome: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()), 
+            ingredientsAtHome: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()),
             unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView())
         )
     }
@@ -159,6 +159,10 @@ enum MealzViewConfig {
         empty: TypeSafeEmpty(MarmitonMyMealsEmpty())
     )
     
+    static let myProductsView = MyProductsViewOptions(
+        productCard: TypeSafeMyProductsProductCard(MarmitonMyProductsProductCard())
+    )
+    
     // ---------------------------------- MY BASKET ----------------------------------
     
     static let myBasketView = MyBasketViewOptions(
@@ -170,6 +174,7 @@ enum MealzViewConfig {
         myBasketViewOptions: myBasketView,
         myMealsViewOptions: MyMealsViewOptions(nestedOptions: myMealsView),
         myMealsBaseViews: myMealsBaseView,
+        myProductsViewOptions: myProductsView,
         myProductsBaseViews: myProductsBaseView,
 //        catalogRecipesListGridConfig: myMealsGridConfig,
         navigateToCatalog: showCatalog,

@@ -23,6 +23,8 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
    let priceOfRecipeButton2 = UIButton(type: .system)
    var priceOfRecipe2: String? = nil
    
+   let deleteAllCacheButton = UIButton(type: .system)
+   
    override func viewDidLoad() {
       super.viewDidLoad()
       
@@ -58,6 +60,12 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
       priceOfRecipeButton2.setTitle(priceOfRecipe2 ?? "Get Price", for: .normal)
       priceOfRecipeButton2.addTarget(self, action: #selector(getPriceOrRedirect2), for: .touchUpInside)
       
+      /* ----------------------------- DELETE ALL CACHE -----------------------------------------------*/
+      
+      deleteAllCacheButton.translatesAutoresizingMaskIntoConstraints = false
+      deleteAllCacheButton.setTitle("Delete All Cache for next run", for: .normal)
+      deleteAllCacheButton.addTarget(self, action: #selector(deleteAllCache), for: .touchUpInside)
+      
       // Add the label and button to the view hierarchy
       view.addSubview(recipeDetailsLabel1)
       view.addSubview(recipeDetailsButton1)
@@ -65,6 +73,7 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
       view.addSubview(recipeDetailsLabel2)
       view.addSubview(recipeDetailsButton2)
       view.addSubview(priceOfRecipeButton2)
+      view.addSubview(deleteAllCacheButton)
       
       // Constraints for the label
       NSLayoutConstraint.activate([
@@ -110,6 +119,13 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
          priceOfRecipeButton2.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -20)
       ])
       
+      NSLayoutConstraint.activate([
+         deleteAllCacheButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+         deleteAllCacheButton.topAnchor.constraint(equalTo: priceOfRecipeButton2.bottomAnchor, constant: 50), // Position button below the label
+         deleteAllCacheButton.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 20),
+         deleteAllCacheButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -20)
+      ])
+      
       // Additional UI setup
       view.backgroundColor = .white
    }
@@ -131,6 +147,15 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
    func changeTabToMyBasket() {
       self.tabBarController?.selectedIndex = 1
       print("code ran")
+   }
+   
+   @objc func deleteAllCache() {
+      let defaults = UserDefaults.standard
+      if let domain = Bundle.main.bundleIdentifier {
+          defaults.removePersistentDomain(forName: domain)
+          defaults.synchronize()
+          print("All UserDefaults data cleared.")
+      }
    }
    
    @objc func getPriceOrRedirect1() {
@@ -160,7 +185,7 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
                let price = try await Mealz.shared.recipe.getPriceOrRedirect(recipeId: "14472", numberOfGuest: 4).await()
                let priceOfRecipe = price as? Double ?? 0
                if priceOfRecipe == 0.0 { return }
-               self.priceOfRecipe1 = String(priceOfRecipe)
+               self.priceOfRecipe2 = String(priceOfRecipe)
                DispatchQueue.main.async { [weak self] in
                   self?.priceOfRecipeButton2.setTitle(self?.priceOfRecipe2 ?? "Get Price", for: .normal)
                }
