@@ -22,8 +22,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		269588D82C3569EE0020A2B4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		269588D92C3569EE0020A2B4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		26DC5AE22BBEC0BF000E9510 /* MarmitonDemoIOSMealz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarmitonDemoIOSMealz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DC5AE52BBEC0BF000E9510 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26DC5AE72BBEC0BF000E9510 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 			knownRegions = (
 				en,
 				Base,
-				fr,
 			);
 			mainGroup = 26DC5AD92BBEC0BF000E9510;
 			packageReferences = (
@@ -198,7 +195,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				26DC5AEC2BBEC0BF000E9510 /* Base */,
-				269588D82C3569EE0020A2B4 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -207,7 +203,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				26DC5AF12BBEC0BF000E9510 /* Base */,
-				269588D92C3569EE0020A2B4 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
