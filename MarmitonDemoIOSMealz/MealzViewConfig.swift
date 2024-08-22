@@ -177,6 +177,7 @@ enum MealzViewConfig {
         myProductsViewOptions: myProductsView,
         myProductsBaseViews: myProductsBaseView,
 //        catalogRecipesListGridConfig: myMealsGridConfig,
+        defaultTab: .products,
         navigateToCatalog: showCatalog,
         navigateToCheckout: showCheckout
     )
