@@ -25,6 +25,7 @@ class StandaloneRecipeDetailsViewController: UIViewController {
         
         let recipesDetailsFeature = MealzRecipeDetailsFeatureUIKit(
             recipeId: recipeId,
+            isMealzRecipe: false,
             recipeDetailsConstructor: MealzViewConfig.recipeDetailsConfig({
                 self.openMyBasket()
             })

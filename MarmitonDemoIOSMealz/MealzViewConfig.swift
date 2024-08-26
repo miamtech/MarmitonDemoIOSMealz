@@ -81,8 +81,7 @@ enum MealzViewConfig {
     )
     
     static let itemSelectorView = ItemSelectorViewOptions(
-        searchBar: TypeSafeSearch(MarmitonGeneralSearch()), 
-        noResults: TypeSafeItemSelectorNoResults(MarmitonItemSelectorNoResultsView())
+        searchBar: TypeSafeSearch(MarmitonGeneralSearch())
     )
     
     static let recipeDetailsConfig = { (openMyBasket: @escaping () -> Void) -> RecipeDetailsFeatureConstructor in

@@ -130,6 +130,11 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
       view.backgroundColor = .white
    }
    
+   override func viewDidAppear(_ animated: Bool) {
+      if priceOfRecipe1 != nil { updatePrice1() }
+      if priceOfRecipe2 != nil { updatePrice2() }
+   }
+   
    @objc func launchRecipeDetails1() {
       let recipeDetails = StandaloneRecipeDetailsViewController(recipeId: "22509", openMyBasket: changeTabToMyBasket)
       if let nav = self.navigationController {
@@ -160,19 +165,23 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
    
    @objc func getPriceOrRedirect1() {
       if priceOfRecipe1 == nil {
-         Task {
-            do {
-               let price = try await Mealz.shared.recipe.getPriceOrRedirect(recipeId: "22509", numberOfGuest: 4).await()
-               let priceOfRecipe = price as? Double ?? 0
-               if priceOfRecipe == 0.0 { return }
-               self.priceOfRecipe1 = String(priceOfRecipe)
-               DispatchQueue.main.async { [weak self] in
-                  self?.priceOfRecipeButton1.setTitle(self?.priceOfRecipe1 ?? "Get Price", for: .normal)
-               }
-            } catch {
-               DispatchQueue.main.async { [weak self] in
-                  self?.priceOfRecipeButton1.setTitle("Failed to get price", for: .normal)
-               }
+         updatePrice1()
+      }
+   }
+   
+   private func updatePrice1() {
+      Task {
+         do {
+            let price = try await Mealz.shared.recipe.getPriceOrRedirect(recipeId: "22509", numberOfGuest: 4).await()
+            let priceOfRecipe = price as? Double ?? 0
+            if priceOfRecipe == 0.0 { return }
+            self.priceOfRecipe1 = String(priceOfRecipe)
+            DispatchQueue.main.async { [weak self] in
+               self?.priceOfRecipeButton1.setTitle(self?.priceOfRecipe1 ?? "Get Price", for: .normal)
+            }
+         } catch {
+            DispatchQueue.main.async { [weak self] in
+               self?.priceOfRecipeButton1.setTitle("Failed to get price", for: .normal)
             }
          }
       }
@@ -180,19 +189,23 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
    
    @objc func getPriceOrRedirect2() {
       if priceOfRecipe2 == nil {
-         Task {
-            do {
-               let price = try await Mealz.shared.recipe.getPriceOrRedirect(recipeId: "14472", numberOfGuest: 4).await()
-               let priceOfRecipe = price as? Double ?? 0
-               if priceOfRecipe == 0.0 { return }
-               self.priceOfRecipe2 = String(priceOfRecipe)
-               DispatchQueue.main.async { [weak self] in
-                  self?.priceOfRecipeButton2.setTitle(self?.priceOfRecipe2 ?? "Get Price", for: .normal)
-               }
-            } catch {
-               DispatchQueue.main.async { [weak self] in
-                  self?.priceOfRecipeButton2.setTitle("Failed to get price", for: .normal)
-               }
+         updatePrice2()
+      }
+   }
+   
+   private func updatePrice2() {
+      Task {
+         do {
+            let price = try await Mealz.shared.recipe.getPriceOrRedirect(recipeId: "14472", numberOfGuest: 4).await()
+            let priceOfRecipe = price as? Double ?? 0
+            if priceOfRecipe == 0.0 { return }
+            self.priceOfRecipe2 = String(priceOfRecipe)
+            DispatchQueue.main.async { [weak self] in
+               self?.priceOfRecipeButton2.setTitle(self?.priceOfRecipe2 ?? "Get Price", for: .normal)
+            }
+         } catch {
+            DispatchQueue.main.async { [weak self] in
+               self?.priceOfRecipeButton2.setTitle("Failed to get price", for: .normal)
             }
          }
       }
