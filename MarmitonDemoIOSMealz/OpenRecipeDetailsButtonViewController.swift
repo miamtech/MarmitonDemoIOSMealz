@@ -28,6 +28,11 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       
+      Mealz.shared.notifications.pointOfSale.listen { [weak self] event in
+         if self?.priceOfRecipe1 != nil { self?.updatePrice1() }
+         if self?.priceOfRecipe2 != nil { self?.updatePrice2() }
+     }
+      
       /* ----------------------------- RECIPE DETAILS 1 -----------------------------------------------*/
       // Configure the label
       recipeDetailsLabel1.translatesAutoresizingMaskIntoConstraints = false
