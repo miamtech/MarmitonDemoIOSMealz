@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import MealzNaviOSSDK
+import MealziOSSDK
 
 class StandaloneRecipeDetailsViewController: UIViewController {
     let recipeId: String
