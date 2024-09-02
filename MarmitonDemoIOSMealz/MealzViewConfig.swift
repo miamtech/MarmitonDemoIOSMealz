@@ -144,8 +144,8 @@ enum MealzViewConfig {
     // ---------------------------------- MY MEALS ----------------------------------
     
     static let myMealsView = NestedMyMealsViewOptions(
-        title: TypeSafeBaseTitle(EmptyTitleView())
-        //        recipeCard: TypeSafeMyMealRecipeCard(MarmitonMyMealRecipeCard())
+        title: TypeSafeBaseTitle(EmptyTitleView()),
+        recipeCard: TypeSafeMyMealRecipeCard(MarmitonMyMealRecipeCard())
     )
     
     static let myMealsBaseView = BasePageViewParameters(
