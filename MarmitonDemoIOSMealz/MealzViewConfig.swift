@@ -40,7 +40,7 @@ let showCheckout: (_ url: String?) -> Void = { urlString in
     guard let urlString = urlString else { return }
     guard let url = URL(string: urlString) else { return }
     
-    let viewController = TransferBasketFeature(transferBasketUrl: url, retailerName: "toto").toUIKit()
+    let viewController = TransferBasketFeature(transferBasketUrl: url, retailerName: RetailerRepositoryCompanion.shared.retailerName ?? "").toUIKit()
     viewController.modalPresentationStyle = .overCurrentContext
     
     if let sceneDelegate = UIApplication.shared.connectedScenes
@@ -63,7 +63,7 @@ enum MealzViewConfig {
         //        loading: TypeSafeLoading(MarmitonLoadingView())
     )
     static let recipeDetailsViews = { (openMyBasket: @escaping () -> Void) -> RecipeDetailsViewOptions in
-        return RecipeDetailsViewOptions(
+        RecipeDetailsViewOptions(
             header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView(changeStore: changeStore)),
             selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
             //        numberOfIngredientsTitle: TypeSafeBaseTitle(EmptyTitleView())
@@ -73,6 +73,7 @@ enum MealzViewConfig {
             unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView())
         )
     }
+
     static let recipeDetailsProductsViews = RecipeDetailsProductViewOptions(
         ignoredProduct: TypeSafeRecipeDetailsIgnoredProduct(MarmitonRecipeDetailsIgnoredProductView()),
         addedProduct: TypeSafeRecipeDetailsAddedProduct(MarmitonRecipeDetailsAddedProductView())
@@ -83,16 +84,13 @@ enum MealzViewConfig {
     )
     
     static let recipeDetailsConfig = { (openMyBasket: @escaping () -> Void) -> RecipeDetailsFeatureConstructor in
-        return RecipeDetailsFeatureConstructor(
+        RecipeDetailsFeatureConstructor(
             baseViews: recipeDetailsBaseViews,
             recipeDetailsViewOptions: recipeDetailsViews(openMyBasket),
             recipeDetailsProductViewOptions: recipeDetailsProductsViews,
             itemSelectorViewOptions: itemSelectorView
         )
     }
-    
-    
-    
     
     // -------------------------------- CATALOG ----------------------------------
     
@@ -142,8 +140,8 @@ enum MealzViewConfig {
     // ---------------------------------- MY MEALS ----------------------------------
     
     static let myMealsView = NestedMyMealsViewOptions(
-        title: TypeSafeBaseTitle(EmptyTitleView())
-        //        recipeCard: TypeSafeMyMealRecipeCard(MarmitonMyMealRecipeCard())
+        title: TypeSafeBaseTitle(EmptyTitleView()),
+        recipeCard: TypeSafeMyMealRecipeCard(MarmitonMyMealRecipeCard())
     )
     
     static let myMealsBaseView = BasePageViewParameters(
