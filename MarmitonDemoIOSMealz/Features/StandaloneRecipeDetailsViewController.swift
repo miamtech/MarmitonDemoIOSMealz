@@ -23,6 +23,7 @@ class StandaloneRecipeDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Bundle.init(url:Bundle(for: MealzCatalogFeatureUIKit.self).resourceURL!.appendingPathComponent("MealzNaviOSSDK.bundle"))
         
         let recipesDetailsFeature = MealzRecipeDetailsFeatureUIKit(
             recipeId: recipeId,
