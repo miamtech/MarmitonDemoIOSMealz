@@ -5,7 +5,7 @@
 //  Created by Diarmuid McGonagle on 04/04/2024.
 //
 
-import MealzNaviOSSDK
+import MealziOSSDK
 import UIKit
 
 class MyBasketFeatureViewController: UIViewController {
@@ -13,7 +13,7 @@ class MyBasketFeatureViewController: UIViewController {
         super.viewDidLoad()
 
         let myBasketFeature = MealzMyBasketFeatureUIKit(
-            recipeDetailsConstructor: MealzViewConfig.recipeDetailsConfig{},
+            recipeDetailsConstructor: MealzViewConfig.recipeDetailsConfig {},
             myBasketContructor: MealzViewConfig.myBasketConfig
         )
 
