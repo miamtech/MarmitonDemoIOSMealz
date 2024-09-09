@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HYm-Mn-Vym">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -20,7 +21,6 @@
                     <connections>
                         <segue destination="WFq-rw-I97" kind="relationship" relationship="viewControllers" id="cxU-P2-7gp"/>
                         <segue destination="9AD-Pn-a6t" kind="relationship" relationship="viewControllers" id="b8d-5G-0Wq"/>
-                        <segue destination="kXW-tb-P3F" kind="relationship" relationship="viewControllers" id="f0N-9r-lmF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PFo-IY-kq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -61,22 +61,6 @@
             </objects>
             <point key="canvasLocation" x="250" y="-1276"/>
         </scene>
-        <!--Basket-->
-        <scene sceneID="zeh-RT-oxJ">
-            <objects>
-                <viewController id="kXW-tb-P3F" customClass="PretendBasketViewController" customModule="MarmitonDemoIOSMealz" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6cq-iB-LjC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="tkg-YZ-c0p"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Basket" image="basket" catalog="system" id="Hka-q3-HAR"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R3e-SQ-zRz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="282" y="53"/>
-        </scene>
         <!--MyBasket-->
         <scene sceneID="UaX-u9-eD8">
             <objects>
@@ -93,9 +77,25 @@
             </objects>
             <point key="canvasLocation" x="250" y="-626"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="v6N-PF-Jj2">
+            <objects>
+                <viewController id="HZV-wt-vbI" customClass="OpenRecipeDetailsButtonViewController" customModule="MarmitonDemoIOSMealz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Pc-Ec-b99">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="CJW-tU-vSE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="oyO-pP-aza"/>
+                    <navigationItem key="navigationItem" id="DyT-Zv-01A"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="92y-dM-Zg2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1207" y="-1276"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="basket" catalog="system" width="128" height="108"/>
         <image name="fork.knife" catalog="system" width="94" height="128"/>
         <image name="lanyardcard.fill" catalog="system" width="108" height="128"/>
         <systemColor name="systemBackgroundColor">

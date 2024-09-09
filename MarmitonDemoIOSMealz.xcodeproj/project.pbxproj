@@ -14,10 +14,6 @@
 		26DC5AEF2BBEC0BF000E9510 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26DC5AEE2BBEC0BF000E9510 /* Assets.xcassets */; };
 		26DC5AF22BBEC0BF000E9510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DC5AF02BBEC0BF000E9510 /* LaunchScreen.storyboard */; };
 		26DC5AFA2BBEC0D4000E9510 /* MealzViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5AF92BBEC0D4000E9510 /* MealzViewConfig.swift */; };
-		26DC5B092BBEC0DE000E9510 /* DemoBasketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B032BBEC0DE000E9510 /* DemoBasketService.swift */; };
-		26DC5B0A2BBEC0DE000E9510 /* PretendBasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B052BBEC0DE000E9510 /* PretendBasketViewController.swift */; };
-		26DC5B0B2BBEC0DE000E9510 /* PretendProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B062BBEC0DE000E9510 /* PretendProduct.swift */; };
-		26DC5B0C2BBEC0DE000E9510 /* PretendBasket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B072BBEC0DE000E9510 /* PretendBasket.swift */; };
 		26DC5B0D2BBEC0DE000E9510 /* MealzManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B082BBEC0DE000E9510 /* MealzManager.swift */; };
 		26DC5B102BBEC106000E9510 /* MarmitonUIMealzIOS in Frameworks */ = {isa = PBXBuildFile; productRef = 26DC5B0F2BBEC106000E9510 /* MarmitonUIMealzIOS */; };
 		26DC5B122BBECAF2000E9510 /* StandaloneRecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC5B112BBECAF2000E9510 /* StandaloneRecipeDetailsViewController.swift */; };
@@ -35,10 +31,6 @@
 		26DC5AF12BBEC0BF000E9510 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26DC5AF32BBEC0BF000E9510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26DC5AF92BBEC0D4000E9510 /* MealzViewConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealzViewConfig.swift; sourceTree = "<group>"; };
-		26DC5B032BBEC0DE000E9510 /* DemoBasketService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoBasketService.swift; sourceTree = "<group>"; };
-		26DC5B052BBEC0DE000E9510 /* PretendBasketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PretendBasketViewController.swift; sourceTree = "<group>"; };
-		26DC5B062BBEC0DE000E9510 /* PretendProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PretendProduct.swift; sourceTree = "<group>"; };
-		26DC5B072BBEC0DE000E9510 /* PretendBasket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PretendBasket.swift; sourceTree = "<group>"; };
 		26DC5B082BBEC0DE000E9510 /* MealzManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealzManager.swift; sourceTree = "<group>"; };
 		26DC5B112BBECAF2000E9510 /* StandaloneRecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneRecipeDetailsViewController.swift; sourceTree = "<group>"; };
 		26DC5B132BBED007000E9510 /* OpenRecipeDetailsButtonViewController.swift */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.swift; path = OpenRecipeDetailsButtonViewController.swift; sourceTree = "<group>"; };
@@ -103,21 +95,9 @@
 		26DC5B022BBEC0DE000E9510 /* MealzInit */ = {
 			isa = PBXGroup;
 			children = (
-				26DC5B032BBEC0DE000E9510 /* DemoBasketService.swift */,
-				26DC5B042BBEC0DE000E9510 /* PretendBasket */,
 				26DC5B082BBEC0DE000E9510 /* MealzManager.swift */,
 			);
 			path = MealzInit;
-			sourceTree = "<group>";
-		};
-		26DC5B042BBEC0DE000E9510 /* PretendBasket */ = {
-			isa = PBXGroup;
-			children = (
-				26DC5B052BBEC0DE000E9510 /* PretendBasketViewController.swift */,
-				26DC5B062BBEC0DE000E9510 /* PretendProduct.swift */,
-				26DC5B072BBEC0DE000E9510 /* PretendBasket.swift */,
-			);
-			path = PretendBasket;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,11 +180,7 @@
 				26DC5B0D2BBEC0DE000E9510 /* MealzManager.swift in Sources */,
 				26DC5AEA2BBEC0BF000E9510 /* ViewController.swift in Sources */,
 				26DC5B182BBEF138000E9510 /* MyBasketViewController.swift in Sources */,
-				26DC5B092BBEC0DE000E9510 /* DemoBasketService.swift in Sources */,
-				26DC5B0A2BBEC0DE000E9510 /* PretendBasketViewController.swift in Sources */,
 				26DC5B142BBED007000E9510 /* OpenRecipeDetailsButtonViewController.swift in Sources */,
-				26DC5B0C2BBEC0DE000E9510 /* PretendBasket.swift in Sources */,
-				26DC5B0B2BBEC0DE000E9510 /* PretendProduct.swift in Sources */,
 				26DC5AE62BBEC0BF000E9510 /* AppDelegate.swift in Sources */,
 				26DC5AFA2BBEC0D4000E9510 /* MealzViewConfig.swift in Sources */,
 				26DC5AE82BBEC0BF000E9510 /* SceneDelegate.swift in Sources */,
@@ -239,6 +215,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -302,6 +279,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

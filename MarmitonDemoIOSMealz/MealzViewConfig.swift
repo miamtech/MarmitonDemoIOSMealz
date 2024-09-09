@@ -7,62 +7,108 @@
 
 import Foundation
 import MarmitonUIMealzIOS
-import MealzUIModuleIOS
-import MealzIOSFramework
-import MealzNavModuleIOS
 import mealzcore
+import MealziOSSDK
+import MealzNaviOSSDK
+import MealzUIiOSSDK
 import UIKit
+import WebKit
 
 let changeStore: () -> Void = {
-    let htmlFileURL =  Bundle(identifier: "MarmitonUIMealzIOS-MarmitonUIMealzIOS-resources")!.url(forResource: "index", withExtension: "html", subdirectory: "Ressources")!
+    let htmlFileURL = MarmitonUIMealzIOS.bundle.url(forResource: "index", withExtension: "html", subdirectory: "Ressources")!
     
-    var mealsWebView =  MealzWebView(url:htmlFileURL) { value in
+    var mealsWebView = MealzStoreLocatorWebView(url: htmlFileURL) { value in
         guard let posId = value as? String else { return }
-        Mealz.User.shared.setStoreId(storeId: posId)
+        Mealz.User.shared.setStoreWithMealzId(storeId: posId)
     }
-    
-    UIApplication.shared.keyWindow?.rootViewController?.present(mealsWebView, animated: true)
-    
+    if let sceneDelegate = UIApplication.shared.connectedScenes
+        .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+        let keyWindow = sceneDelegate.windows.first(where: { $0.isKeyWindow }),
+        let rootViewController = keyWindow.rootViewController
+    {
+        // Find the topmost view controller which is not presenting another view controller
+        var topViewController = rootViewController
+        while let presentedViewController = topViewController.presentedViewController {
+            topViewController = presentedViewController
+        }
+        
+        // Present the new view controller from the topmost view controller
+        topViewController.present(mealsWebView, animated: true)
+    }
 }
 
-struct MealzViewConfig {
+let showCheckout: (_ url: String?) -> Void = { urlString in
     
+    guard let urlString = urlString else { return }
+    guard let url = URL(string: urlString) else { return }
+    
+    let viewController = TransferBasketFeature(transferBasketUrl: url, retailerName: RetailerRepositoryCompanion.shared.retailerName ?? "").toUIKit()
+    viewController.modalPresentationStyle = .overCurrentContext
+    
+    if let sceneDelegate = UIApplication.shared.connectedScenes
+        .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+        let keyWindow = sceneDelegate.windows.first(where: { $0.isKeyWindow }),
+        let rootViewController = keyWindow.rootViewController
+    {
+        var topViewController = rootViewController
+        while let presentedViewController = topViewController.presentedViewController {
+            topViewController = presentedViewController
+        }
+        topViewController.present(viewController, animated: true)
+    }
+}
+
+enum MealzViewConfig {
     // ----------------------------- RECIPE DETAILS ------------------------------
     
     static let recipeDetailsBaseViews = BasePageViewParameters(
-//        loading: TypeSafeLoading(MarmitonLoadingView())
+        //        loading: TypeSafeLoading(MarmitonLoadingView())
     )
-    static let recipeDetailsViews = RecipeDetailsViewOptions(
-        header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView(changeStore: changeStore)),
-        selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView())
-//        numberOfIngredientsTitle: TypeSafeBaseTitle(EmptyTitleView())
-//        steps: TypeSafeRecipeDetailsSteps(MarmitonRecipeDetailsStepsView()),
-//        footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView())
-    )
+    static let recipeDetailsViews = { (openMyBasket: @escaping () -> Void) -> RecipeDetailsViewOptions in
+        RecipeDetailsViewOptions(
+            header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView(changeStore: changeStore)),
+            selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
+            //        numberOfIngredientsTitle: TypeSafeBaseTitle(EmptyTitleView())
+            //        steps: TypeSafeRecipeDetailsSteps(MarmitonRecipeDetailsStepsView()),
+            footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView(openMyBasket: openMyBasket)),
+            ingredientsAtHome: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()),
+            unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView())
+        )
+    }
+
     static let recipeDetailsProductsViews = RecipeDetailsProductViewOptions(
-//        addedProduct: TypeSafeRecipeDetailsAddedProduct(MarmitonRecipeDetailsAddedProductView())
+        ignoredProduct: TypeSafeRecipeDetailsIgnoredProduct(MarmitonRecipeDetailsIgnoredProductView()),
+        addedProduct: TypeSafeRecipeDetailsAddedProduct(MarmitonRecipeDetailsAddedProductView())
     )
-    static let recipeDetailsConfig = RecipeDetailsFeatureConstructor(
-        baseViews: recipeDetailsBaseViews,
-        recipeDetailsViewOptions: recipeDetailsViews,
-        recipeDetailsProductViewOptions: recipeDetailsProductsViews
+    
+    static let itemSelectorView = ItemSelectorViewOptions(
+        searchBar: TypeSafeSearch(MarmitonGeneralSearch())
     )
+    
+    static let recipeDetailsConfig = { (openMyBasket: @escaping () -> Void) -> RecipeDetailsFeatureConstructor in
+        RecipeDetailsFeatureConstructor(
+            baseViews: recipeDetailsBaseViews,
+            recipeDetailsViewOptions: recipeDetailsViews(openMyBasket),
+            recipeDetailsProductViewOptions: recipeDetailsProductsViews,
+            itemSelectorViewOptions: itemSelectorView
+        )
+    }
     
     // -------------------------------- CATALOG ----------------------------------
     
     static let catalogView = CatalogViewOptions(
-//        catalogToolbar: TypeSafeCatalogToolbar(MarmitonCatalogToolbar()),
-//        resultsToolbar: TypeSafeCatalogToolbar(MarmitonCatalogResultsToolbar()),
-//        mealsInBasketButtonSuccess: TypeSafeMealsInBasketButtonSuccess(MarmitonMealsInBasketButtonSuccess())
+        //        catalogToolbar: TypeSafeCatalogToolbar(MarmitonCatalogToolbar()),
+        //        resultsToolbar: TypeSafeCatalogToolbar(MarmitonCatalogResultsToolbar()),
+        //        mealsInBasketButtonSuccess: TypeSafeMealsInBasketButtonSuccess(MarmitonMealsInBasketButtonSuccess())
     )
     
     static let catalogPackageView = CatalogPackageRowViewOptions(
-//        callToAction: TypeSafeCatalogPackageCTA(MarmitonCatalogPackageCTA()),
-//        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard(showYellowBanner: true))
+        //        callToAction: TypeSafeCatalogPackageCTA(MarmitonCatalogPackageCTA()),
+        //        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard(showYellowBanner: true))
     )
     
     static let recipesListView = CatalogRecipesListViewOptions(
-//        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard(showingOnCatalogResults: true))
+        //        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard(showingOnCatalogResults: true))
     )
     
     static let catalogViewGridConfig = CatalogRecipesListGridConfig(
@@ -74,9 +120,9 @@ struct MealzViewConfig {
         catalogViewOptions: catalogView,
         recipesListViewOptions: recipesListView,
         packageRowViewOptions: catalogPackageView,
-//        catalogSearchViewOptions: catalogSearchView,
+        //        catalogSearchViewOptions: catalogSearchView,
         catalogViewGridConfig: catalogViewGridConfig
-//        catalogResultsGridConfig: catalogResultsGridConfig
+        //        catalogResultsGridConfig: catalogResultsGridConfig
     )
     
     // -------------------------------- FAVORITES ----------------------------------
@@ -85,7 +131,7 @@ struct MealzViewConfig {
     static let showCatalog = {}
     
     static let favoritesView = FavoritesViewOptions(
-//        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard())
+        //        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard())
     )
     
     static let favoritesConfig = FavoritesFeatureConstructor(
@@ -96,8 +142,8 @@ struct MealzViewConfig {
     // ---------------------------------- MY MEALS ----------------------------------
     
     static let myMealsView = NestedMyMealsViewOptions(
-        title: TypeSafeBaseTitle(EmptyTitleView())
-//        recipeCard: TypeSafeMyMealRecipeCard(MarmitonMyMealRecipeCard())
+        title: TypeSafeBaseTitle(EmptyTitleView()),
+        recipeCard: TypeSafeMyMealRecipeCard(MarmitonMyMealRecipeCard())
     )
     
     static let myMealsBaseView = BasePageViewParameters(
@@ -108,6 +154,10 @@ struct MealzViewConfig {
     
     static let myProductsBaseView = BasePageViewParameters(
         empty: TypeSafeEmpty(MarmitonMyMealsEmpty())
+    )
+    
+    static let myProductsView = MyProductsViewOptions(
+        productCard: TypeSafeMyProductsProductCard(MarmitonMyProductsProductCard())
     )
     
     // ---------------------------------- MY BASKET ----------------------------------
@@ -121,9 +171,11 @@ struct MealzViewConfig {
         myBasketViewOptions: myBasketView,
         myMealsViewOptions: MyMealsViewOptions(nestedOptions: myMealsView),
         myMealsBaseViews: myMealsBaseView,
+        myProductsViewOptions: myProductsView,
         myProductsBaseViews: myProductsBaseView,
 //        catalogRecipesListGridConfig: myMealsGridConfig,
-        navigateToCatalog: showCatalog
+        defaultTab: .products,
+        navigateToCatalog: showCatalog,
+        navigateToCheckout: showCheckout
     )
-    
 }

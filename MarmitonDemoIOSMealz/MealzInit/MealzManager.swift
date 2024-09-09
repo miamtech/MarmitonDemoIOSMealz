@@ -7,8 +7,8 @@
 
 import Foundation
 import mealzcore
-import MealzIOSFramework
-import MealzUIModuleIOS
+import MealziOSSDK
+import MealzUIiOSSDK
 import MarmitonUIMealzIOS
 
 public class MealzManager: ObservableObject {
@@ -16,32 +16,22 @@ public class MealzManager: ObservableObject {
     
     // need to be private
     private init() {
-        //        let supplierKey = "ewoJInN1cHBsaWVyX2lkIjogIjE0IiwKCSJwbGF1c2libGVfZG9tYWluZSI6ICJtaWFtLnRlc3QiLAoJIm1pYW1fb3JpZ2luIjogIm1pYW0iLAoJIm9yaWdpbiI6ICJtaWFtIiwKCSJtaWFtX2Vudmlyb25tZW50IjogIlVBVCIKfQ=="
-        let supplierKey = "ewoJInN1cHBsaWVyX2lkIjogIjciLAoJInBsYXVzaWJsZV9kb21haW5lIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX29yaWdpbiI6ICJjb3Vyc2VzdSIsCgkib3JpZ2luIjogIm1pYW0uY291cnNlc3UuYXBwIiwKCSJtaWFtX2Vudmlyb25tZW50IjogIlBST0QiCn0="
+        let supplierKeyUAT = "ewogICAgICAgICJwcm92aWRlcl9pZCI6ICJtYXJtaXRvbiIKCSJwbGF1c2libGVfZG9tYWluZSI6ICJtaWFtLnRlc3QiLAoJIm1pYW1fb3JpZ2luIjogIm1hcm1pdG9uIiwKCSJvcmlnaW4iOiAibWlhbS5tYXJtaXRvbi5hcHAiLAoJIm1pYW1fZW52aXJvbm1lbnQiOiAiVUFUIgp9"
+//        let supplierKey = "ewogICAgICAgICJwcm92aWRlcl9pZCI6ICJtYXJtaXRvbiIKCSJwbGF1c2libGVfZG9tYWluZSI6ICJtaWFtLm1hcm1pdG9uLmFwcCIsCgkibWlhbV9vcmlnaW4iOiAibWFybWl0b24iLAoJIm9yaWdpbiI6ICJtaWFtLm1hcm1pdG9uLmFwcCIsCgkibWlhbV9lbnZpcm9ubWVudCI6ICJQUk9EIgp9"
         
-        I18nResolver.shared.registerAppBundle(bundle: MarmitonUIMealzIOS.bundle)
+        I18nResolver.shared.registerAppBundle(bundle: MarmitonUIMealzIOSBundle.bundle)
         
-        let demoBasketService = DemoBasketService(initialBasketList: PretendBasket.shared.items)
-        
-        Mealz.shared.Core(init: { coreBuilder in
+        Mealz.shared.Core(
+            init: { coreBuilder in
             // set supplier key
             coreBuilder.sdkRequirement(init: { requirementBuilder in
-                requirementBuilder.key = supplierKey
+                requirementBuilder.key = supplierKeyUAT
             })
-            // set listeners & notifiers
-            coreBuilder.subscriptions(init:  { subscriptionBuilder in
-                subscriptionBuilder.basket(init: { basketSubscriptionBuilder in
-                    // subscribe
-                    basketSubscriptionBuilder.subscribe(subscriber: demoBasketService)
-                    // push updates
-                    basketSubscriptionBuilder.register(publisher: demoBasketService)
+                coreBuilder.option(init: { config in
+                    config.isAnonymousModeEnabled = true
                 })
-            })
         })
-        // set store
-        Mealz.shared.user.setStoreId(storeId: "25910")
-        // set userID
-        Mealz.shared.user.updateUserId(userId: "test_\(UUID())", authorization: Authorization.userId)
+        
         // allow profiling -> can we use your personal data to provide custom recipes?
         Mealz.shared.user.setProfilingAllowance(allowance: true)
         // allow users to heart recipes
@@ -59,11 +49,14 @@ public class MealzManager: ObservableObject {
         })
         // listen to analytics events
         Mealz.shared.notifications.analytics.listen { event in
-            LogHandler.companion.info("Mealz.Notifications.analytics \(String(describing: event))")
+            print("Mealz.Notifications.analytics \(String(describing: event))")
         }
         
         // show "Sponsored" tag on products that are sponsored
         Mealz.shared.environment.setAllowsSponsoredProducts(isAllowed: true)
+        
+        // set the redirection when the user has not selected a store
+        Mealz.shared.user.setStoreLocatorRedirection { changeStore() }
         
         // set how many logs you want:
         // .errorsAndWarns, .errorsOnly, .allLogs, or .noLogs
