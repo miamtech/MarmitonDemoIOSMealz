@@ -141,4 +141,11 @@ enum MealzViewConfig {
     )
     
     static let getPriceParams = GetPriceButtonParameters(viewOptions: getPriceView)
+    
+    // ---------------------------------- SHOW RECIPE BUTTON ----------------------------------
+    
+    static let showRecipeDetailsView = ShowRecipeDetailsButtonViewOptions(
+        buttonToShowRecipeDetails: TypeSafeShowRecipeDetailsButton(MarmitonShowRecipeDetailsButtonView()),
+        recipeNotAvailable: TypeSafeEmpty(MarmitonRecipeNotAvailableView())
+    )
 }
