@@ -92,51 +92,6 @@ enum MealzViewConfig {
         )
     }
     
-    // -------------------------------- CATALOG ----------------------------------
-    
-    static let catalogView = CatalogViewOptions(
-        //        catalogToolbar: TypeSafeCatalogToolbar(MarmitonCatalogToolbar()),
-        //        resultsToolbar: TypeSafeCatalogToolbar(MarmitonCatalogResultsToolbar()),
-        //        mealsInBasketButtonSuccess: TypeSafeMealsInBasketButtonSuccess(MarmitonMealsInBasketButtonSuccess())
-    )
-    
-    static let catalogPackageView = CatalogPackageRowViewOptions(
-        //        callToAction: TypeSafeCatalogPackageCTA(MarmitonCatalogPackageCTA()),
-        //        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard(showYellowBanner: true))
-    )
-    
-    static let recipesListView = CatalogRecipesListViewOptions(
-        //        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard(showingOnCatalogResults: true))
-    )
-    
-    static let catalogViewGridConfig = CatalogRecipesListGridConfig(
-        recipeCardFillMaxWidth: false
-    )
-    
-    static let catalogConfig = CatalogFeatureConstructor(
-        usesPreferences: false,
-        catalogViewOptions: catalogView,
-        recipesListViewOptions: recipesListView,
-        packageRowViewOptions: catalogPackageView,
-        //        catalogSearchViewOptions: catalogSearchView,
-        catalogViewGridConfig: catalogViewGridConfig
-        //        catalogResultsGridConfig: catalogResultsGridConfig
-    )
-    
-    // -------------------------------- FAVORITES ----------------------------------
-    
-    /* pass in your nav to the catalog here! */
-    static let showCatalog = {}
-    
-    static let favoritesView = FavoritesViewOptions(
-        //        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard())
-    )
-    
-    static let favoritesConfig = FavoritesFeatureConstructor(
-        favoritesViewOptions: favoritesView,
-        navigateToCatalog: showCatalog
-    )
-    
     // ---------------------------------- MY MEALS ----------------------------------
     
     static let myMealsView = NestedMyMealsViewOptions(
@@ -173,7 +128,17 @@ enum MealzViewConfig {
         myProductsBaseViews: myProductsBaseView,
 //        catalogRecipesListGridConfig: myMealsGridConfig,
         defaultTab: .products,
-        navigateToCatalog: showCatalog,
+        navigateToCatalog: {},
         navigateToCheckout: showCheckout
     )
+    
+    // ---------------------------------- GET PRICE BUTTON ----------------------------------
+    
+    static let getPriceView = GetPriceButtonViewOptions(
+        priceSuccess: TypeSafePriceSuccess(MarmitonGetPriceSuccessView()),
+        buttonToGetPrice: TypeSafeEmpty(MarmitonGetPriceButtonView()),
+        priceNotAvailable: TypeSafeEmpty(MarmitonPriceNotAvailableView())
+    )
+    
+    static let getPriceParams = GetPriceButtonParameters(viewOptions: getPriceView)
 }
