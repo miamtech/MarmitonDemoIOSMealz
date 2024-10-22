@@ -64,10 +64,10 @@ enum MealzViewConfig {
     )
     static let recipeDetailsViews = { (openMyBasket: @escaping () -> Void) -> RecipeDetailsViewOptions in
         RecipeDetailsViewOptions(
+            floatingHeader: TypeSafeRecipeDetailsFloatingNavigation(MarmitonRecipeDetailsFloatingNavigationView()),
             header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView(changeStore: changeStore)),
+            tags: TypeSafeRecipeDetailsTags(MarmitonRecipeDetailsTagsView()),
             selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
-            //        numberOfIngredientsTitle: TypeSafeBaseTitle(EmptyTitleView())
-            //        steps: TypeSafeRecipeDetailsSteps(MarmitonRecipeDetailsStepsView()),
             footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView(openMyBasket: openMyBasket)),
             ingredientsAtHome: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()),
             unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView())
@@ -126,7 +126,6 @@ enum MealzViewConfig {
         myMealsBaseViews: myMealsBaseView,
         myProductsViewOptions: myProductsView,
         myProductsBaseViews: myProductsBaseView,
-//        catalogRecipesListGridConfig: myMealsGridConfig,
         defaultTab: .products,
         navigateToCatalog: {},
         navigateToCheckout: showCheckout

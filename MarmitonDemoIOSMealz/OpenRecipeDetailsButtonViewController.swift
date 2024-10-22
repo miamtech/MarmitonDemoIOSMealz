@@ -20,7 +20,7 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
    let recipeId2 = "14472"
    
    let recipeDetailsLabel3 = UILabel()
-   let recipeId3 = ""
+   let recipeId3 = "20015"
    
    let deleteAllCacheButton = UIButton(type: .system)
    
@@ -90,7 +90,12 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
       showRecipeDetailsButton3.view.translatesAutoresizingMaskIntoConstraints = false
       
       // Replace UIButton with UIHostingController for SwiftUI component
-      let priceView3 = GetPriceButton(params: MealzViewConfig.getPriceParams, recipeId: "", isMealzRecipe: false, guestNumber: 4)
+      let priceView3 = GetPriceButton(
+         params: MealzViewConfig.getPriceParams,
+         recipeId: recipeId3,
+         isMealzRecipe: false,
+         guestNumber: 4
+      )
       let getPriceView3 = UIHostingController(rootView: priceView3)
       getPriceView3.view.translatesAutoresizingMaskIntoConstraints = false
       
