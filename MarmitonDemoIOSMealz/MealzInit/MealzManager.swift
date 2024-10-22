@@ -6,10 +6,9 @@
 //
 
 import Foundation
+import MarmitonUIMealzIOS
 import mealzcore
 import MealziOSSDK
-import MealzUIiOSSDK
-import MarmitonUIMealzIOS
 
 public class MealzManager: ObservableObject {
     public static let sharedInstance = MealzManager()
@@ -23,14 +22,14 @@ public class MealzManager: ObservableObject {
         
         Mealz.shared.Core(
             init: { coreBuilder in
-            // set supplier key
-            coreBuilder.sdkRequirement(init: { requirementBuilder in
-                requirementBuilder.key = supplierKeyUAT
-            })
+                // set supplier key
+                coreBuilder.sdkRequirement(init: { requirementBuilder in
+                    requirementBuilder.key = supplierKeyUAT
+                })
                 coreBuilder.option(init: { config in
                     config.isAnonymousModeEnabled = true
                 })
-        })
+            })
         
         // allow profiling -> can we use your personal data to provide custom recipes?
         Mealz.shared.user.setProfilingAllowance(allowance: true)
