@@ -9,8 +9,6 @@ import Foundation
 import MarmitonUIMealzIOS
 import mealzcore
 import MealziOSSDK
-import MealzNaviOSSDK
-import MealzUIiOSSDK
 import UIKit
 import WebKit
 
@@ -66,10 +64,10 @@ enum MealzViewConfig {
     )
     static let recipeDetailsViews = { (openMyBasket: @escaping () -> Void) -> RecipeDetailsViewOptions in
         RecipeDetailsViewOptions(
+            floatingHeader: TypeSafeRecipeDetailsFloatingNavigation(MarmitonRecipeDetailsFloatingNavigationView()),
             header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView(changeStore: changeStore)),
+            tags: TypeSafeRecipeDetailsTags(MarmitonRecipeDetailsTagsView()),
             selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
-            //        numberOfIngredientsTitle: TypeSafeBaseTitle(EmptyTitleView())
-            //        steps: TypeSafeRecipeDetailsSteps(MarmitonRecipeDetailsStepsView()),
             footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView(openMyBasket: openMyBasket)),
             ingredientsAtHome: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()),
             unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView())
@@ -93,51 +91,6 @@ enum MealzViewConfig {
             itemSelectorViewOptions: itemSelectorView
         )
     }
-    
-    // -------------------------------- CATALOG ----------------------------------
-    
-    static let catalogView = CatalogViewOptions(
-        //        catalogToolbar: TypeSafeCatalogToolbar(MarmitonCatalogToolbar()),
-        //        resultsToolbar: TypeSafeCatalogToolbar(MarmitonCatalogResultsToolbar()),
-        //        mealsInBasketButtonSuccess: TypeSafeMealsInBasketButtonSuccess(MarmitonMealsInBasketButtonSuccess())
-    )
-    
-    static let catalogPackageView = CatalogPackageRowViewOptions(
-        //        callToAction: TypeSafeCatalogPackageCTA(MarmitonCatalogPackageCTA()),
-        //        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard(showYellowBanner: true))
-    )
-    
-    static let recipesListView = CatalogRecipesListViewOptions(
-        //        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard(showingOnCatalogResults: true))
-    )
-    
-    static let catalogViewGridConfig = CatalogRecipesListGridConfig(
-        recipeCardFillMaxWidth: false
-    )
-    
-    static let catalogConfig = CatalogFeatureConstructor(
-        usesPreferences: false,
-        catalogViewOptions: catalogView,
-        recipesListViewOptions: recipesListView,
-        packageRowViewOptions: catalogPackageView,
-        //        catalogSearchViewOptions: catalogSearchView,
-        catalogViewGridConfig: catalogViewGridConfig
-        //        catalogResultsGridConfig: catalogResultsGridConfig
-    )
-    
-    // -------------------------------- FAVORITES ----------------------------------
-    
-    /* pass in your nav to the catalog here! */
-    static let showCatalog = {}
-    
-    static let favoritesView = FavoritesViewOptions(
-        //        recipeCard: TypeSafeCatalogRecipeCard(MarmitonRecipeCard())
-    )
-    
-    static let favoritesConfig = FavoritesFeatureConstructor(
-        favoritesViewOptions: favoritesView,
-        navigateToCatalog: showCatalog
-    )
     
     // ---------------------------------- MY MEALS ----------------------------------
     
@@ -173,9 +126,25 @@ enum MealzViewConfig {
         myMealsBaseViews: myMealsBaseView,
         myProductsViewOptions: myProductsView,
         myProductsBaseViews: myProductsBaseView,
-//        catalogRecipesListGridConfig: myMealsGridConfig,
         defaultTab: .products,
-        navigateToCatalog: showCatalog,
+        navigateToCatalog: {},
         navigateToCheckout: showCheckout
+    )
+    
+    // ---------------------------------- GET PRICE BUTTON ----------------------------------
+    
+    static let getPriceView = GetPriceButtonViewOptions(
+        priceSuccess: TypeSafePriceSuccess(MarmitonGetPriceSuccessView()),
+        buttonToGetPrice: TypeSafeEmpty(MarmitonGetPriceButtonView()),
+        priceNotAvailable: TypeSafeEmpty(MarmitonPriceNotAvailableView())
+    )
+    
+    static let getPriceParams = GetPriceButtonParameters(viewOptions: getPriceView)
+    
+    // ---------------------------------- SHOW RECIPE BUTTON ----------------------------------
+    
+    static let showRecipeDetailsView = ShowRecipeDetailsButtonViewOptions(
+        buttonToShowRecipeDetails: TypeSafeShowRecipeDetailsButton(MarmitonShowRecipeDetailsButtonView()),
+        recipeNotAvailable: TypeSafeEmpty(MarmitonRecipeNotAvailableView())
     )
 }
