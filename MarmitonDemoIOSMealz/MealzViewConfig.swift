@@ -116,7 +116,7 @@ enum MealzViewConfig {
     // ---------------------------------- MY BASKET ----------------------------------
     
     static let myBasketView = MyBasketViewOptions(
-        title: TypeSafeBaseTitle(MarmitonMyBasketTitle(changeStore: changeStore)),
+        title: TypeSafeMyBasketTitle(MarmitonMyBasketTitle(changeStore: changeStore)),
         swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {}))
     )
     
