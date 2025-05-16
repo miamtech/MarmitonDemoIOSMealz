@@ -116,8 +116,8 @@ enum MealzViewConfig {
     // ---------------------------------- MY BASKET ----------------------------------
     
     static let myBasketView = MyBasketViewOptions(
-        title: TypeSafeBaseTitle(MarmitonMyBasketTitle(changeStore: changeStore)),
-        swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {}))
+        swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {})),
+        storeLocatorButton: TypeSafeStoreLocatorButton(MealzStoreLocatorButton())
     )
     
     static let myBasketConfig = MyBasketFeatureConstructor(
@@ -128,7 +128,8 @@ enum MealzViewConfig {
         myProductsBaseViews: myProductsBaseView,
         defaultTab: .products,
         navigateToCatalog: {},
-        navigateToCheckout: showCheckout
+        navigateToCheckout: showCheckout,
+        navigateToStoreLocator: changeStore
     )
     
     // ---------------------------------- GET PRICE BUTTON ----------------------------------
