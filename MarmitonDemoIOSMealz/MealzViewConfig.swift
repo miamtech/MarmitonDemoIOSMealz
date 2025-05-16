@@ -70,7 +70,8 @@ enum MealzViewConfig {
             selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
             footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView(openMyBasket: openMyBasket)),
             ingredientsAtHome: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()),
-            unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView())
+            unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()),
+            storeSelectorButton: TypeSafeStoreLocatorButton(MealzStoreLocatorButton())
         )
     }
 
@@ -88,7 +89,8 @@ enum MealzViewConfig {
             baseViews: recipeDetailsBaseViews,
             recipeDetailsViewOptions: recipeDetailsViews(openMyBasket),
             recipeDetailsProductViewOptions: recipeDetailsProductsViews,
-            itemSelectorViewOptions: itemSelectorView
+            itemSelectorViewOptions: itemSelectorView,
+            navigateToStoreLocator: changeStore
         )
     }
     
