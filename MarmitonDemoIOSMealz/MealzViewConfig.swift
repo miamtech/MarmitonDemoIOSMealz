@@ -70,7 +70,8 @@ enum MealzViewConfig {
             selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
             footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView(openMyBasket: openMyBasket)),
             ingredientsAtHome: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()),
-            unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView())
+            unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()),
+            storeSelectorButton: TypeSafeStoreLocatorButton(MealzStoreLocatorButton())
         )
     }
 
@@ -88,7 +89,8 @@ enum MealzViewConfig {
             baseViews: recipeDetailsBaseViews,
             recipeDetailsViewOptions: recipeDetailsViews(openMyBasket),
             recipeDetailsProductViewOptions: recipeDetailsProductsViews,
-            itemSelectorViewOptions: itemSelectorView
+            itemSelectorViewOptions: itemSelectorView,
+            navigateToStoreLocator: changeStore
         )
     }
     
@@ -116,8 +118,8 @@ enum MealzViewConfig {
     // ---------------------------------- MY BASKET ----------------------------------
     
     static let myBasketView = MyBasketViewOptions(
-        title: TypeSafeBaseTitle(MarmitonMyBasketTitle(changeStore: changeStore)),
-        swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {}))
+        swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {})),
+        storeLocatorButton: TypeSafeStoreLocatorButton(MealzStoreLocatorButton())
     )
     
     static let myBasketConfig = MyBasketFeatureConstructor(
@@ -128,7 +130,8 @@ enum MealzViewConfig {
         myProductsBaseViews: myProductsBaseView,
         defaultTab: .products,
         navigateToCatalog: {},
-        navigateToCheckout: showCheckout
+        navigateToCheckout: showCheckout,
+        navigateToStoreLocator: changeStore
     )
     
     // ---------------------------------- GET PRICE BUTTON ----------------------------------
