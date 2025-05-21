@@ -14,7 +14,7 @@ import WebKit
 
 let changeStore: () -> Void = {
     let htmlFileURL = MarmitonUIMealzIOS.bundle.url(forResource: "index", withExtension: "html", subdirectory: "Ressources")!
-    
+
     var mealsWebView = MealzStoreLocatorWebView(url: htmlFileURL) { value in
         guard let posId = value as? String else { return }
         Mealz.User.shared.setStoreWithMealzId(storeId: posId)
@@ -96,6 +96,7 @@ enum MealzViewConfig {
     
     static let myMealsView = NestedMyMealsViewOptions(
         title: TypeSafeBaseTitle(EmptyTitleView()),
+        itemSelectorCTAPosition: MyMealsItemSelectorCTAPosition.bottom,
         recipeCard: TypeSafeMyMealRecipeCard(MarmitonMyMealRecipeCard())
     )
     
@@ -110,7 +111,8 @@ enum MealzViewConfig {
     )
     
     static let myProductsView = MyProductsViewOptions(
-        productCard: TypeSafeMyProductsProductCard(MarmitonMyProductsProductCard())
+        productCard: TypeSafeMyProductsProductCard(MarmitonMyProductsProductCard()),
+        itemSelectorCTAPosition: MyProductsItemSelectorCTAPosition.bottom
     )
     
     // ---------------------------------- MY BASKET ----------------------------------
