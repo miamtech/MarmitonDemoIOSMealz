@@ -110,7 +110,8 @@ enum MealzViewConfig {
     )
     
     static let myProductsView = MyProductsViewOptions(
-        productCard: TypeSafeMyProductsProductCard(MarmitonMyProductsProductCard())
+        productCard: TypeSafeMyProductsProductCard(MarmitonMyProductsProductCard()),
+        showDeletedProduct: true
     )
     
     // ---------------------------------- MY BASKET ----------------------------------
