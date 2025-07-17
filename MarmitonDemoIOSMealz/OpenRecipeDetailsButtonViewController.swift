@@ -24,8 +24,18 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
    
    let deleteAllCacheButton = UIButton(type: .system)
    
+   @SwiftUI.State var showProductsInMyBasket: Bool = false
+   
    override func viewDidLoad() {
       super.viewDidLoad()
+      
+      Mealz.shared.notifications.productsCount.listen { productCount in
+         if let badgeValue = productCount as? Int {
+            self.tabBarController?.tabBar.items?[1].badgeValue = "\(badgeValue)"
+         } else {
+            self.tabBarController?.tabBar.items?[1].badgeValue = nil
+         }
+      }
       
       let recipeDetailsConfig = MealzViewConfig.recipeDetailsConfig({
          self.changeTabToMyBasket()
