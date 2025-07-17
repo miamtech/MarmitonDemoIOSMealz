@@ -55,7 +55,9 @@ public class MealzManager: ObservableObject {
         Mealz.shared.environment.setAllowsSponsoredProducts(isAllowed: true)
         
         // set the redirection when the user has not selected a store
-        Mealz.shared.user.setStoreLocatorRedirection { changeStore() }
+        Mealz.shared.user.setStoreLocatorRedirectionWithCallback { callback in
+            changeStore(callback)
+        }
         
         // set how many logs you want:
         // .errorsAndWarns, .errorsOnly, .allLogs, or .noLogs

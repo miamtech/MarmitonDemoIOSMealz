@@ -12,13 +12,18 @@ import MealziOSSDK
 import UIKit
 import WebKit
 
-let changeStore: () -> Void = {
+let changeStore: (StoreLocatorRedirectionCallback?) -> Void = { callback in
     let htmlFileURL = MarmitonUIMealzIOS.bundle.url(forResource: "index", withExtension: "html", subdirectory: "Ressources")!
     
-    var mealsWebView = MealzStoreLocatorWebView(url: htmlFileURL) { value in
-        guard let posId = value as? String else { return }
-        Mealz.User.shared.setStoreWithMealzId(storeId: posId)
-    }
+    var mealsWebView = MealzStoreLocatorWebView(
+        url: htmlFileURL,
+        onSelectItem: { value in
+            callback?.onStoreSelected()
+        },
+        onSelectionCancelled: {
+            callback?.onSelectionCanceled()
+        }
+    )
     if let sceneDelegate = UIApplication.shared.connectedScenes
         .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
         let keyWindow = sceneDelegate.windows.first(where: { $0.isKeyWindow }),
@@ -144,7 +149,6 @@ enum MealzViewConfig {
     // ---------------------------------- SHOW RECIPE BUTTON ----------------------------------
     
     static let showRecipeDetailsView = ShowRecipeDetailsButtonViewOptions(
-        buttonToShowRecipeDetails: TypeSafeShowRecipeDetailsButton(MarmitonShowRecipeDetailsButtonView()),
         recipeNotAvailable: TypeSafeEmpty(MarmitonRecipeNotAvailableView())
     )
 }
