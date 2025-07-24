@@ -12,13 +12,18 @@ import MealziOSSDK
 import UIKit
 import WebKit
 
-let changeStore: () -> Void = {
+let changeStore: (StoreLocatorRedirectionCallback?) -> Void = { callback in
     let htmlFileURL = MarmitonUIMealzIOS.bundle.url(forResource: "index", withExtension: "html", subdirectory: "Ressources")!
     
-    var mealsWebView = MealzStoreLocatorWebView(url: htmlFileURL) { value in
-        guard let posId = value as? String else { return }
-        Mealz.User.shared.setStoreWithMealzId(storeId: posId)
-    }
+    var mealsWebView = MealzStoreLocatorWebView(
+        url: htmlFileURL,
+        onSelectItem: { value in
+            callback?.onStoreSelected()
+        },
+        onSelectionCancelled: {
+            callback?.onSelectionCanceled()
+        }
+    )
     if let sceneDelegate = UIApplication.shared.connectedScenes
         .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
         let keyWindow = sceneDelegate.windows.first(where: { $0.isKeyWindow }),
@@ -65,12 +70,12 @@ enum MealzViewConfig {
     static let recipeDetailsViews = { (openMyBasket: @escaping () -> Void) -> RecipeDetailsViewOptions in
         RecipeDetailsViewOptions(
             floatingHeader: TypeSafeRecipeDetailsFloatingNavigation(MarmitonRecipeDetailsFloatingNavigationView()),
-            header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView(changeStore: changeStore)),
             tags: TypeSafeRecipeDetailsTags(MarmitonRecipeDetailsTagsView()),
             selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
             footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView(openMyBasket: openMyBasket)),
             ingredientsAtHome: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()),
-            unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView())
+            unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()),
+            storeSelectorButton: TypeSafeStoreLocatorButton(MealzStoreLocatorButton())
         )
     }
 
@@ -88,7 +93,8 @@ enum MealzViewConfig {
             baseViews: recipeDetailsBaseViews,
             recipeDetailsViewOptions: recipeDetailsViews(openMyBasket),
             recipeDetailsProductViewOptions: recipeDetailsProductsViews,
-            itemSelectorViewOptions: itemSelectorView
+            itemSelectorViewOptions: itemSelectorView,
+            navigateToStoreLocator: { changeStore(nil) }
         )
     }
     
@@ -116,8 +122,8 @@ enum MealzViewConfig {
     // ---------------------------------- MY BASKET ----------------------------------
     
     static let myBasketView = MyBasketViewOptions(
-        title: TypeSafeBaseTitle(MarmitonMyBasketTitle(changeStore: changeStore)),
-        swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {}))
+        swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {})),
+        storeLocatorButton: TypeSafeStoreLocatorButton(MealzStoreLocatorButton())
     )
     
     static let myBasketConfig = MyBasketFeatureConstructor(
@@ -128,7 +134,8 @@ enum MealzViewConfig {
         myProductsBaseViews: myProductsBaseView,
         defaultTab: .products,
         navigateToCatalog: {},
-        navigateToCheckout: showCheckout
+        navigateToCheckout: showCheckout,
+        navigateToStoreLocator: { changeStore(nil) }
     )
     
     // ---------------------------------- GET PRICE BUTTON ----------------------------------
@@ -144,7 +151,6 @@ enum MealzViewConfig {
     // ---------------------------------- SHOW RECIPE BUTTON ----------------------------------
     
     static let showRecipeDetailsView = ShowRecipeDetailsButtonViewOptions(
-        buttonToShowRecipeDetails: TypeSafeShowRecipeDetailsButton(MarmitonShowRecipeDetailsButtonView()),
         recipeNotAvailable: TypeSafeEmpty(MarmitonRecipeNotAvailableView())
     )
 }

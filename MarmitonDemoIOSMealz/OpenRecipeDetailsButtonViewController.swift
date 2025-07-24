@@ -24,8 +24,18 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
    
    let deleteAllCacheButton = UIButton(type: .system)
    
+   @SwiftUI.State var showProductsInMyBasket: Bool = false
+   
    override func viewDidLoad() {
       super.viewDidLoad()
+      
+      Mealz.shared.notifications.productsCount.listen { productCount in
+         if let badgeValue = productCount as? Int {
+            self.tabBarController?.tabBar.items?[1].badgeValue = "\(badgeValue)"
+         } else {
+            self.tabBarController?.tabBar.items?[1].badgeValue = nil
+         }
+      }
       
       let recipeDetailsConfig = MealzViewConfig.recipeDetailsConfig({
          self.changeTabToMyBasket()
@@ -40,8 +50,9 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
       let recipeDetailsButton1 = MealzShowRecipeDetailsButton(
          recipeId: recipeId1,
          isMealzRecipe: false,
-         recipeDetailsConstructor: recipeDetailsConfig,
-         showRecipeDetailsButtonViewOptions: MealzViewConfig.showRecipeDetailsView
+         showProductsInMyBasket: {
+            self.changeTabToMyBasket()
+         }
       )
       
       let showRecipeDetailsButton1 = UIHostingController(rootView: recipeDetailsButton1)
@@ -62,8 +73,10 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
       let recipeDetailsButton2 = MealzShowRecipeDetailsButton(
          recipeId: recipeId2,
          isMealzRecipe: false,
-         recipeDetailsConstructor: recipeDetailsConfig,
-         showRecipeDetailsButtonViewOptions: MealzViewConfig.showRecipeDetailsView
+         showProductsInMyBasket: {
+            let myBasketVC = MyBasketFeatureViewController()
+            self.present(myBasketVC, animated: true)
+         }
       )
       let showRecipeDetailsButton2 = UIHostingController(rootView: recipeDetailsButton2)
       showRecipeDetailsButton2.view.translatesAutoresizingMaskIntoConstraints = false
@@ -83,8 +96,9 @@ class OpenRecipeDetailsButtonViewController: UIViewController {
       let recipeDetailsButton3 = MealzShowRecipeDetailsButton(
          recipeId: recipeId3,
          isMealzRecipe: false,
-         recipeDetailsConstructor: recipeDetailsConfig,
-         showRecipeDetailsButtonViewOptions: MealzViewConfig.showRecipeDetailsView
+         showProductsInMyBasket: {
+            self.changeTabToMyBasket()
+         }
       )
       let showRecipeDetailsButton3 = UIHostingController(rootView: recipeDetailsButton3)
       showRecipeDetailsButton3.view.translatesAutoresizingMaskIntoConstraints = false
