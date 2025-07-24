@@ -70,12 +70,12 @@ enum MealzViewConfig {
     static let recipeDetailsViews = { (openMyBasket: @escaping () -> Void) -> RecipeDetailsViewOptions in
         RecipeDetailsViewOptions(
             floatingHeader: TypeSafeRecipeDetailsFloatingNavigation(MarmitonRecipeDetailsFloatingNavigationView()),
-            header: TypeSafeRecipeDetailsHeader(MarmitonRecipeDetailsHeaderView(changeStore: changeStore)),
             tags: TypeSafeRecipeDetailsTags(MarmitonRecipeDetailsTagsView()),
             selectedControl: TypeSafeRecipeDetailsSelectedControl(MarmitonRecipeDetailsSelectedControlView()),
             footer: TypeSafeRecipeDetailsFooter(MarmitonRecipeDetailsFooterView(openMyBasket: openMyBasket)),
             ingredientsAtHome: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()),
-            unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView())
+            unavailableIngredients: TypeSafeNotInBasketProduct(MarmitonNotInBasketProductView()),
+            storeSelectorButton: TypeSafeStoreLocatorButton(MealzStoreLocatorButton())
         )
     }
 
@@ -93,7 +93,8 @@ enum MealzViewConfig {
             baseViews: recipeDetailsBaseViews,
             recipeDetailsViewOptions: recipeDetailsViews(openMyBasket),
             recipeDetailsProductViewOptions: recipeDetailsProductsViews,
-            itemSelectorViewOptions: itemSelectorView
+            itemSelectorViewOptions: itemSelectorView,
+            navigateToStoreLocator: { changeStore(nil) }
         )
     }
     
@@ -121,8 +122,8 @@ enum MealzViewConfig {
     // ---------------------------------- MY BASKET ----------------------------------
     
     static let myBasketView = MyBasketViewOptions(
-        title: TypeSafeBaseTitle(MarmitonMyBasketTitle(changeStore: changeStore)),
-        swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {}))
+        swapper: TypeSafeMyBasketSwapper(MarmitonMyBasketSwapper(onAddAnotherProduct: {})),
+        storeLocatorButton: TypeSafeStoreLocatorButton(MealzStoreLocatorButton())
     )
     
     static let myBasketConfig = MyBasketFeatureConstructor(
@@ -133,7 +134,8 @@ enum MealzViewConfig {
         myProductsBaseViews: myProductsBaseView,
         defaultTab: .products,
         navigateToCatalog: {},
-        navigateToCheckout: showCheckout
+        navigateToCheckout: showCheckout,
+        navigateToStoreLocator: { changeStore(nil) }
     )
     
     // ---------------------------------- GET PRICE BUTTON ----------------------------------
